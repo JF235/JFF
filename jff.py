@@ -1,3 +1,4 @@
+import re
 import rules_md as md
 import rules_html as html
 from sys import argv
@@ -38,10 +39,19 @@ def main():
 
     htmlBuffer = md2html(buffer)
     
+    # Arquivo base, contendo `head` e `body`
+    with open('assets/base.html', mode='r', encoding='utf8') as file:
+        htmlFile = file.read()
+    
+    pattern = re.compile("INSERTHERE")
+    # Transforma string htmlBuffer para 'rawString' sem as aspas produzidas
+    # ao obter a forma canônica de representação da string com repr()
+    htmlFile = pattern.sub(repr(htmlBuffer)[1:-1], htmlFile)
+    
     # Stripped Extension
     filenameStem = Path(filename).stem
     with open(f'{filenameStem}.html', mode='w', encoding='utf8') as file:
-        file.write(htmlBuffer)
+        file.write(htmlFile)
 
 if __name__ == '__main__':
     main()

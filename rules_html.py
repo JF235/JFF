@@ -5,8 +5,8 @@ H3_T = r"<h3>\1</h3>"
 BOLD_T = r"<strong>\1</strong>"
 ITALIC_T = r"<em>\1</em>"
 
-INLINE_MATH_T = r'<span class="inline-math">\1</span>'
-DISPLAY_MATH_T = r'<div class="display-math">\1</div>'
+INLINE_MATH_T = r'<span class="inline-math">\(\1\)</span>'
+DISPLAY_MATH_T = r'<div class="display-math">\[\1\]</div>'
 
 ORDERED_LIST_T = r"<ol>\n\1</ol>"
 ORDERED_ITEM_T = r"<li>\1</li>"
