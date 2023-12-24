@@ -1,0 +1,39 @@
+# Espaços Topológicos
+
+Espaços topológicos são estruturas matemáticas que permitem a formalização dos conceitos de convergência, conexidade e continuidade. 
+Eles aparecem em praticamente todos os ramos da matemática moderna e são uma noção unificadora central.
+
+O ramo da matemática que estuda os espaços topológicos é denominado topologia.
+
+## Definição
+
+Uma **topologia** em um conjunto $X$ é uma coleção $\tau$ em partes de $X$, chamados os **abertos** da topologia, com as seguintes propriedades:
+
+1. *O conjunto vazio e o próprio conjunto $X$ são abertos.* 
+
+    $\emptyset, X\in \tau$
+
+2. *A intersecção de dois conjuntos abertos é um aberto.*
+
+    Se $A_1, A_2 \in \tau$, então $A_1\cap A_2 \in \tau$
+
+3. *A união de uma família arbitrária de abertos é um aberto.*
+
+    Dada uma família arbitrária $(A_\lambda)_{\lambda \in L}$, com $A_\lambda \in \tau, \forall \lambda \in L$, tem-se $\left(\bigcup\limits_{\lambda\in L}A_\lambda\right) \in \tau$
+
+Um **espaço topológico** é um par $(X, \tau)$ onde $X$ é um conjunto e $\tau$ é uma topologia em $X$.
+
+## Exemplo
+
+Dado o conjunto $X=\{1,2,3\}$, possíveis topologias $\tau$ são:
+
+- $\{\emptyset, X\}$
+- $\{\emptyset, X, \{1\}\}$
+- $\{\emptyset, X, \{1\}, \{2\}, \{1, 2\}\}$
+- $\{\emptyset, X, \{2\}, \{1, 2\}, \{2, 3\}\}$
+- $\wp\{X\}$, conjunto potência (família de todos os subconjuntos de $X$)
+
+Exemplos de subconjuntos que não formam uma topologia
+
+- $\{\emptyset, X, \{1, 2\}, \{2, 3\}\}$, viola a propriedade 2, uma vez que a intesecção dos abertos $\{1, 2\} \cap \{2, 3\}$ não é um aberto (não está em $\tau$).
+- $\{\emptyset, X, \{1\}, \{2\}\}$, viola propriedade 3, uma vez que a união dos abertos $\{1\}\cup \{2\}$ não é um aberto.
