@@ -1,0 +1,38 @@
+body {
+    text-align: justify;
+    margin: 0 auto;
+    width: 70%;
+    font-size: larger;
+    font-family: 'TeX Gyre Schola';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-align: center;
+}
+
+img {
+    margin: 0 auto;
+    display: block;
+}
+
+figcaption {
+    text-align: center;
+}
+
+body {
+    counter-reset: figureCounter;
+}
+
+figure {
+    counter-increment: figureCounter;
+}
+
+figcaption::before {
+    font-weight: bold;
+    content: 'Fig. ' counter(figureCounter) ' - ';
+}

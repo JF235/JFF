@@ -9,12 +9,16 @@ INLINE_MATH_T = r'<span class="inline-math">\(\1\)</span>'
 DISPLAY_MATH_T = r'<div class="display-math">\[\1\]</div>'
 
 ORDERED_LIST_T = r"<ol>\n\1</ol>"
-ORDERED_ITEM_T = r"<li>\1</li>"
+ORDERED_ITEM_T = r"<li>\1    </li>"
 
 UNORDERED_LIST_T = r"<ul>\n\1</ul>"  # Newline para evitar problema com o primeiro item
-UNORDERED_ITEM_T = r"<li>\1</li>"
+UNORDERED_ITEM_T = ORDERED_ITEM_T
 
-P_T = r"\1<p>\2</p>"
+P_T = r"\2<p>\1    </p>"
+
+FIGURE_T = r'<figure><img src=\1 style="\2" id="fig-\4"><figcaption>\3</figcaption></figure>'
+
+REFERENCE_T = r'<a href="#fig-\1">\2 NUMHERE</a>'
 
 TARGET_RULES = [
     P_T,

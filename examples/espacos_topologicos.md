@@ -15,7 +15,8 @@ Uma **topologia** em um conjunto $X$ é uma coleção $\tau$ em partes de $X$, c
 
 2. *A intersecção de dois conjuntos abertos é um aberto.*
 
-    Se $A_1, A_2 \in \tau$, então $A_1\cap A_2 \in \tau$
+    Se $A_1, A_2 \in \tau$, 
+    então $A_1\cap A_2 \in \tau$
 
 3. *A união de uma família arbitrária de abertos é um aberto.*
 
@@ -33,7 +34,7 @@ Dado o conjunto $X=\{1,2,3\}$, possíveis topologias $\tau$ são:
 - $\{\emptyset, X, \{2\}, \{1, 2\}, \{2, 3\}\}$
 - $\wp\{X\}$, conjunto potência (família de todos os subconjuntos de $X$)
 
-Exemplos de subconjuntos que não formam uma topologia
+Exemplos de conjuntos que não formam uma topologia
 
 - $\{\emptyset, X, \{1, 2\}, \{2, 3\}\}$, viola a propriedade 2, uma vez que a intesecção dos abertos $\{1, 2\} \cap \{2, 3\}$ não é um aberto (não está em $\tau$).
 - $\{\emptyset, X, \{1\}, \{2\}\}$, viola propriedade 3, uma vez que a união dos abertos $\{1\}\cup \{2\}$ não é um aberto.
