@@ -21,9 +21,32 @@ of a topology.
 ## Basic Topology
 
 Consider a basketball. When it is inflated, its surface is a sphere. But when it is
-deflated its surface is still a *topological sphere*. In fact, we could deform the sphere
-in any way we like and, as long as we do not tear it anywhere, it is still topologically a sphere. We say that all these shapes have the same topology but, since
+deflated its surface *is still a topological sphere*. In fact, we could deform the sphere
+in any way we like and, as long as we do not tear it anywhere, it is still topologically a sphere. We say that all these shapes have the same *topology* but, since
 the distance between the points on the surface has changed, they have different
-geometries (see <a label="manifolds2" prefix="Fig.">).
+*geometries* (see <a label="manifolds2" prefix="Fig.">).
 
 <figure src="manifolds2.png" size="width:70%" caption="Topological 2-spheres." label="manifolds2">
+
+At first sight the actual definition of a topology appears to have nothing to do
+with these notions. Only after much study does one begin to see why the following
+definition is reasonable. A **topology** $\tau$ on a set $X$ is a family of subsets of $X$, called
+*open* sets, satisfying the following.
+
+1. Arbitrary unions of open sets are open.
+2. Finite intersections of open sets are open.
+3. The empty set $∅$ and $X$ are both open.
+
+A topological space (or, simply, a space) is a set X endowed with a topology.
+
+**Example 3.1** Let $X$ be a finite set, and let $τ$ be the set of all subsets of $X$. This is
+called the **discrete topology** on $X$.
+
+A **neighborhood** of $p ∈ X$ is any open set containing $p$. If q lies in a neigh-
+borhood of $p$ we say that $q$ is **near** $p$. Topology is therefore sometimes called the
+study of nearness relations. A topology on $X$ is called **Hausdorff** if the points
+in every pair lie in disjoint neighborhoods or, more technically, if for every two
+points $p, q ∈ X$, there exist two disjoint open sets $U$ and $V$ such that $p ∈ U$
+and $q ∈ V$. We will primarily be interested in Hausdorff topologies, because these
+coincide with our intuition that points are isolated objects; other sorts of topologies
+are generally considered to be pathological (at least by non-topologists).

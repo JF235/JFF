@@ -1,60 +1,49 @@
+from rule import RULES
+from rule import FIGURE, REFERENCE, FIGURE_T, REFERENCE_T
 import re
-import rules_md as md
-import rules_html as html
 from sys import argv
 import os
 
 FIGURE_COUNTER = 0
 FIGURE_DICT = {}
 
-def md2html(markdownBuffer):
-    """Converte uma string Markdown para uma string HTML
-
-    Args:
-        markdownBuffer (String): Um buffer com o texto de um arquivo em Markdown
-
-    Returns:
-        String: Um buffer com o texto do arquivo convertido em HTML
-    """
+def subs_figures(string: str) -> str:
     global FIGURE_COUNTER, FIGURE_DICT
-    
-    assert len(html.TARGET_RULES) == len(md.RULES)
-    htmlBuffer = markdownBuffer
-    
-    # Para cada "rule" em Markdown, é feita a troca
-    # pelo respectivo "target" em HTML
-    for rule, target in zip(md.RULES, html.TARGET_RULES):
-        
-        # Forma de depurar os resultados
-        #if rule is md.P:
-        #    print(rule.findall(htmlBuffer))
-            
-        htmlBuffer = rule.sub(target, htmlBuffer)
     
     # Enquanto o retorno de search for diferente de `None`
     # Substitui pela figura e armazena uma entrada no dicionário
     # com a numeração adequada
-    match = md.FIGURE.search(htmlBuffer)
+    match = FIGURE.search(string)
     while match:
         FIGURE_COUNTER += 1
         # group(4) é o label da figura
         FIGURE_DICT[match.group(4)] = FIGURE_COUNTER
-        htmlBuffer = md.FIGURE.sub(html.FIGURE_T, htmlBuffer, count=1)
-        match = md.FIGURE.search(htmlBuffer)
+        string = FIGURE.sub(FIGURE_T, string, count=1)
+        match = FIGURE.search(string)
     
     # Substitui todas as referências pela numeração adequada
-    match = md.REFERENCE.search(htmlBuffer)
+    match = REFERENCE.search(string)
     while match:
         # group(1) é o label da figura
         try:
             figure_number = str(FIGURE_DICT[match.group(1)])
         except KeyError:
             figure_number = "??"
-        htmlBuffer = md.REFERENCE.sub(html.REFERENCE_T, htmlBuffer, count=1)
-        htmlBuffer = re.sub('NUMHERE', figure_number, htmlBuffer)
-        match = md.REFERENCE.search(htmlBuffer)
+        string = REFERENCE.sub(REFERENCE_T, string, count=1)
+        string = re.sub('NUMHERE', figure_number, string)
+        match = REFERENCE.search(string)
     
-    return htmlBuffer
+    return string
+
+def md2html(buffer: str) -> str:
+    new_string = buffer
+    for r in RULES:
+        new_string = r.apply(new_string)
+        
+    # TODO Unificar essa solução
+    new_string = subs_figures(new_string)
+    
+    return new_string
 
 def main():
     try:
@@ -67,8 +56,8 @@ def main():
         buffer = file.read()
         # Adicionando duas quebras de linha no final 
         # para garantir que as regras funcionem de forma apropriada
-        buffer +=  '\n\n'
-
+        buffer += '\n\n'
+    
     htmlBuffer = md2html(buffer)
     
     # Arquivo base, contendo `head` e `body`

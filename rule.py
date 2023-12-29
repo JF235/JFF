@@ -141,6 +141,11 @@ _unordered_list = f"(({_unordered_item})+)"
 UNORDERED_LIST = Rule("Unordered List", _unordered_list, r"<ul>\1</ul>", re.MULTILINE)
 UNORDERED_ITEM = Rule("Unordered Item", _unordered_item, r"<li>\1</li>", re.MULTILINE)
 
+FIGURE = re.compile(r'<figure src="(.+)" size="(.+)" caption="(.+)" label="(.+)">')
+FIGURE_T = r'<figure><img src=\1 style="\2" id="fig-\4"><figcaption>\3</figcaption></figure>'
+REFERENCE = re.compile(r'<a label="(.+)" prefix="(.+)">')
+REFERENCE_T = r'<a href="#fig-\1">\2 NUMHERE</a>'
+
 RULES = [
     P,
     P_IDENT,
