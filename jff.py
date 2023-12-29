@@ -1,5 +1,5 @@
-from rule import RULES
-from rule import FIGURE, REFERENCE, FIGURE_T, REFERENCE_T
+from rules import RULES
+from rules import FIGURE, REFERENCE, FIGURE_T, REFERENCE_T
 import re
 from sys import argv
 import os
