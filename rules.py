@@ -4,9 +4,83 @@ import re
 FIGURE_COUNTER = 0
 FIGURE_DICT = {}
 
-H1 = Rule("Header 1", r"^# (.+)$", r"<h1>\1</h1>", re.MULTILINE)
-H2 = Rule("Header 2", r"^## (.+)$", r"<h2>\1</h2>", re.MULTILINE)
-H3 = Rule("Header 3", r"^### (.+)$", r"<h3>\1</h3>", re.MULTILINE)
+SECTION_COUNTER = 0
+SUBSECTION_COUNTER = 0
+SUBSUBSECTION_COUNTER = 0
+
+
+def pre_section(match: re.Match[str], string: str) -> str:
+    global SECTION_COUNTER
+    SECTION_COUNTER += 1
+    return string
+
+
+def post_section(match: re.Match[str], string: str) -> str:
+    global SECTION_COUNTER
+    string = re.sub("NUMHERE", f"{SECTION_COUNTER}. ", string)
+    return string
+
+
+H1 = Rule(
+    "Header 1",
+    r"^# (.+)$",
+    r"<h1>NUMHERE\1</h1>",
+    re.MULTILINE,
+    pre_func=pre_section,
+    post_func=post_section,
+)
+
+
+def pre_subsection(match: re.Match[str], string: str) -> str:
+    # Incrementa o contador e adiciona uma entrada no dicionário
+    global SUBSECTION_COUNTER
+    SUBSECTION_COUNTER += 1
+    return string
+
+
+def post_subsection(match: re.Match[str], string: str) -> str:
+    global SECTION_COUNTER, SUBSECTION_COUNTER
+    string = re.sub("NUMHERE", f"{SECTION_COUNTER}.{SUBSECTION_COUNTER}. ", string)
+    return string
+
+
+H2 = Rule(
+    "Header 2",
+    r"^## (.+)$",
+    r"<h2>NUMHERE\1</h2>",
+    re.MULTILINE,
+    pre_func=pre_subsection,
+    post_func=post_subsection,
+)
+
+
+def pre_subsubsection(match: re.Match[str], string: str) -> str:
+    # Incrementa o contador e adiciona uma entrada no dicionário
+    global SUBSUBSECTION_COUNTER
+    SUBSUBSECTION_COUNTER += 1
+    return string
+
+
+def post_subsubsubsection(match: re.Match[str], string: str) -> str:
+    global SECTION_COUNTER, SUBSECTION_COUNTER, SUBSUBSECTION_COUNTER
+    string = re.sub(
+        "NUMHERE",
+        f"{SECTION_COUNTER}.{SUBSECTION_COUNTER}.{SUBSUBSECTION_COUNTER}. ",
+        string,
+    )
+    return string
+
+
+H3 = Rule(
+    "Header 3",
+    r"^### (.+)$",
+    r"<h3>NUMHERE\1</h3>",
+    re.MULTILINE,
+    pre_func=pre_subsubsection,
+    post_func=post_subsubsubsection,
+)
+
+
 BOLD = Rule("Bold", r"\*\*(.*?)\*\*", r"<strong>\1</strong>")
 ITALIC = Rule("Italic", r"\*(.*?)\*", r"<em>\1</em>")
 DISPLAY_MATH = Rule("Display Math", r"\$\$(.+?)\$\$", r"\[\1\]", re.DOTALL)
@@ -63,18 +137,20 @@ def pre_figure(match: re.Match[str], string: str) -> str:
     FIGURE_DICT[match.group(4)] = FIGURE_COUNTER
     return string
 
+
 def post_figure(match: re.Match[str], string: str) -> str:
     global FIGURE_COUNTER
-    fig_label = f'Fig. {FIGURE_COUNTER} - '
+    fig_label = f"Fig. {FIGURE_COUNTER} - "
     string = re.sub("LABELHERE", fig_label, string)
     return string
 
 
 _figure = r'<figure src="(.+)" size="(.+)" caption="(.+)" label="(.+)">'
-_figure_repl = (
-    r'<figure><img src=\1 style="\2" id="fig-\4"><figcaption><span class="figurelabel">LABELHERE</span>\3</figcaption></figure>'
+_figure_repl = r'<figure><img src=\1 style="\2" id="fig-\4"><figcaption><span class="figurelabel">LABELHERE</span>\3</figcaption></figure>'
+FIGURE = Rule(
+    "Figure", _figure, _figure_repl, pre_func=pre_figure, post_func=post_figure
 )
-FIGURE = Rule("Figure", _figure, _figure_repl, pre_func=pre_figure, post_func=post_figure)
+
 
 def post_reference(match: re.Match[str], string: str) -> str:
     # Obtém o número da referência
