@@ -8,6 +8,10 @@ SECTION_COUNTER = 0
 SUBSECTION_COUNTER = 0
 SUBSUBSECTION_COUNTER = 0
 
+# TODO: Se livrar desse código duplicado
+# TODO: Ambientes personalizados com contadores
+# TODO: Metadados
+# TODO: Ambiente com código
 
 def pre_section(match: re.Match[str], string: str) -> str:
     global SECTION_COUNTER
