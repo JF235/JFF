@@ -1,6 +1,9 @@
 from Rule import Rule
 import re
 
+FIGURE_COUNTER = 0
+FIGURE_DICT = {}
+
 H1 = Rule("Header 1", r"^# (.+)$", r"<h1>\1</h1>", re.MULTILINE)
 H2 = Rule("Header 2", r"^## (.+)$", r"<h2>\1</h2>", re.MULTILINE)
 H3 = Rule("Header 3", r"^### (.+)$", r"<h3>\1</h3>", re.MULTILINE)
@@ -52,17 +55,60 @@ _unordered_list = f"(({_unordered_item})+)"
 UNORDERED_LIST = Rule("Unordered List", _unordered_list, r"<ul>\1</ul>", re.MULTILINE)
 UNORDERED_ITEM = Rule("Unordered Item", _unordered_item, r"<li>\1</li>", re.MULTILINE)
 
-FIGURE = re.compile(r'<figure src="(.+)" size="(.+)" caption="(.+)" label="(.+)">')
-FIGURE_T = r'<figure><img src=\1 style="\2" id="fig-\4"><figcaption>\3</figcaption></figure>'
-REFERENCE = re.compile(r'<a label="(.+)" prefix="(.+)">')
-REFERENCE_T = r'<a href="#fig-\1">\2 NUMHERE</a>'
+
+def pre_figure(match: re.Match[str], string: str) -> str:
+    # Incrementa o contador e adiciona uma entrada no dicionário
+    global FIGURE_COUNTER, FIGURE_DICT
+    FIGURE_COUNTER += 1
+    FIGURE_DICT[match.group(4)] = FIGURE_COUNTER
+    return string
+
+def post_figure(match: re.Match[str], string: str) -> str:
+    global FIGURE_COUNTER
+    fig_label = f'Fig. {FIGURE_COUNTER} - '
+    string = re.sub("LABELHERE", fig_label, string)
+    return string
+
+
+_figure = r'<figure src="(.+)" size="(.+)" caption="(.+)" label="(.+)">'
+_figure_repl = (
+    r'<figure><img src=\1 style="\2" id="fig-\4"><figcaption><span class="figurelabel">LABELHERE</span>\3</figcaption></figure>'
+)
+FIGURE = Rule("Figure", _figure, _figure_repl, pre_func=pre_figure, post_func=post_figure)
+
+def post_reference(match: re.Match[str], string: str) -> str:
+    # Obtém o número da referência
+    global FIGURE_DICT
+    try:
+        fig_number = str(FIGURE_DICT[match.group(1)])
+    except KeyError:
+        fig_number = "??"
+    string = re.sub("NUMHERE", fig_number, string)
+    return string
+
+
+REFERENCE = Rule(
+    "Reference",
+    r'<a label="(.+)" prefix="(.+)">',
+    r'<a href="#fig-\1" class="reference">\2&nbsp;NUMHERE</a>',
+    post_func=post_reference,
+)
+
 
 RULES = [
     P,
     P_IDENT,
-    H1, H2, H3,
-    BOLD, ITALIC,
-    INLINE_MATH, DISPLAY_MATH,
-    ORDERED_LIST, ORDERED_ITEM,
-    UNORDERED_LIST, UNORDERED_ITEM
+    H1,
+    H2,
+    H3,
+    BOLD,
+    ITALIC,
+    INLINE_MATH,
+    DISPLAY_MATH,
+    ORDERED_LIST,
+    ORDERED_ITEM,
+    UNORDERED_LIST,
+    UNORDERED_ITEM,
+    FIGURE,
+    REFERENCE,
 ]

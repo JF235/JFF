@@ -1,4 +1,9 @@
 import re
+from collections.abc import Callable
+
+
+def nop(match, string):
+    return string
 
 
 def rawString(string: str) -> str:
@@ -7,37 +12,49 @@ def rawString(string: str) -> str:
 
 class Rule:
     def __init__(
-        self, name: str, pattern: str, repl: str, flags: re.RegexFlag = re.NOFLAG
+        self,
+        name: str,
+        pattern: str,
+        repl: str,
+        flags: re.RegexFlag = re.NOFLAG,
+        pre_func: Callable[[re.Match[str], str], str] = nop,
+        post_func: Callable[[re.Match[str], str], str] = nop,
     ):
         self.name = name
         self.pattern = re.compile(pattern, flags)
         self.repl = repl
+        self.pre_func = pre_func
+        self.post_func = post_func
 
     def __repr__(self):
         return f"Rule({self.name}, {self.get_pattern_string()})"
 
     def apply(self, string: str) -> str:
-        """Aplica a regra na `string`. Aplicar a regra consiste em:
+        """Aplica a regra na `string`, consistindo em:
         - Encontrar o padrão com `self.pattern`
-        - Substituir o padrão com `self.repl`, fazendo a desejada formatação
+        - Executar a função `pre_func`
+        - Substituir o padrão com `self.repl` e formatando o resultado
+        - Executar a função `post_func`
 
         Args:
-            string (str): String que é alvo da aplicação da regra
+            string (str): Nova string após aplicação da regra
         """
 
-        # Cria a cópia da string
         new_string = string
         match = self.pattern.search(new_string)
         span = (0, 0)
         while match:
             # Resultado encontrado (match != None)
+            new_string = self.pre_func(match, new_string)
             new_string, span = self.replace(match, new_string)
+            new_string = self.post_func(match, new_string)
+
             match = self.pattern.search(new_string, span[1])
         return new_string
 
     def replace(self, match: re.Match[str], string: str) -> tuple[str, tuple[int, int]]:
         """Substitui na `string` o padrão `match` por `self.repl` com
-        as devidas substituições de grupos.
+        as substituições do grupo e formatação desejada.
 
         Args:
             match (re.Match[str]): Padrão encontrado

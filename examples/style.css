@@ -24,15 +24,11 @@ figcaption {
     text-align: center;
 }
 
-body {
-    counter-reset: figureCounter;
-}
-
-figure {
-    counter-increment: figureCounter;
-}
-
-figcaption::before {
+.figurelabel {
     font-weight: bold;
-    content: 'Fig. ' counter(figureCounter) ' - ';
+}
+
+.reference, .reference:visited {
+    color: #9b4de4;
+    text-decoration: none;
 }
