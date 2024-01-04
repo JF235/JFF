@@ -12,5 +12,4 @@ python jff.py filename.md
 ## TODOS
 
 - Melhorar tratamento de Metadados.
-- Customizar as referências e rótulos das figuras.
 - Código com syntax highlighting.

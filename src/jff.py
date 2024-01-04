@@ -1,27 +1,26 @@
+from sys import argv
 from rules import RULES
 from rule import rawString
 from counter import resolve_numbering
+from default_metadata import get_default_metadata
 import re
-from sys import argv
 import os
 
 
-def parse_metadata(metadata_str: str):
-    metadata = {}
+def parse_metadata(metadata:dict, metadata_str: str):
     metadata_arguments = metadata_str.split('\n')
     for line in metadata_arguments:
         arg_name, arg_option_str = tuple(line.split(':'))
         arg_option = arg_option_str.strip()
         metadata[arg_name] = arg_option
-    return metadata
 
 def read_metadata(string: str):
     pattern = re.compile(r"METADATA\n---\n(.+?)\n---\n\n", re.DOTALL)
     match = pattern.search(string)
-    metadata = {}
+    metadata = get_default_metadata()
     if match:
         metadata_str = match.group(1)
-        metadata = parse_metadata(metadata_str)
+        parse_metadata(metadata, metadata_str)
         # Remove os metadados do arquivo
         string = string[:match.start()] + string[match.end():]
     return metadata, string
