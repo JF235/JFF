@@ -1,6 +1,11 @@
 METADATA
 ---
 COUNTERS: H1, H2, H3, FIG
+H1_FORMAT: 'COUNTER(H1,=). '
+H2_FORMAT: 'COUNTER(H1,=).COUNTER(H2,=). '
+H3_FORMAT: 'COUNTER(H1,=).COUNTER(H2,=).COUNTER(H3,=). '
+FIG_FORMAT: 'Figure COUNTER(FIG,=) - '
+REF_FORMAT: 'Fig.&nbsp;COUNTER(FIG,=,\1)'
 ---
 
 # Manifolds
@@ -16,7 +21,7 @@ the natural sciences.
 
 Roughly, an $n$-dimensional manifold (or $n$-manifold) can be thought of as a kind
 of patchwork quilt built from pieces of $\mathbb{R}^n$ . Classic examples of 2-manifolds are
-the 2-sphere $S^2$ and the 2-torus $T^2$ (see <a label="manifolds" prefix="Fig.">). Usually one pictures these as
+the 2-sphere $S^2$ and the 2-torus $T^2$ (see <a label="manifolds">). Usually one pictures these as
 living in $\mathbb{R}^3$ , but one can consider them in their own right just as bits of $\mathbb{R}^2$ sewn
 together in certain ways. The technical definition of a manifold requires considerable background, which we will try to keep to a minimum. First, we need the idea
 of a topology.
@@ -29,7 +34,7 @@ Consider a basketball. When it is inflated, its surface is a sphere. But when it
 deflated its surface *is still a topological sphere*. In fact, we could deform the sphere
 in any way we like and, as long as we do not tear it anywhere, it is still topologically a sphere. We say that all these shapes have the same *topology* but, since
 the distance between the points on the surface has changed, they have different
-*geometries* (see <a label="manifolds2" prefix="Fig.">).
+*geometries* (see <a label="manifolds2">).
 
 <figure src="manifolds2.png" size="width:70%" caption="Topological 2-spheres." label="manifolds2">
 

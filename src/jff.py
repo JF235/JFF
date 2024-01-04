@@ -11,7 +11,7 @@ def parse_metadata(metadata_str: str):
     metadata_arguments = metadata_str.split('\n')
     for line in metadata_arguments:
         arg_name, arg_option_str = tuple(line.split(':'))
-        arg_option = [option.strip() for option in arg_option_str.split(',')]
+        arg_option = arg_option_str.strip()
         metadata[arg_name] = arg_option
     return metadata
 
@@ -22,14 +22,15 @@ def read_metadata(string: str):
     if match:
         metadata_str = match.group(1)
         metadata = parse_metadata(metadata_str)
+        # Remove os metadados do arquivo
         string = string[:match.start()] + string[match.end():]
     return metadata, string
 
-
 def md2html(buffer: str, metadata: dict) -> str:
     new_string = buffer
-
+    
     for r in RULES:
+        r.format_repl(metadata)
         new_string = r.apply(new_string)
     
     new_string = resolve_numbering(new_string, metadata)

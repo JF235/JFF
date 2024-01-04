@@ -95,5 +95,12 @@ class Rule:
 
         return new_string
 
+    def format_repl(self, metadata: dict):
+        for arg_name in metadata:
+            # TODO: Aqui não preciso percorrer todos os itens
+            if '_FORMAT' in arg_name:
+                formatted_string = rawString(metadata[arg_name].strip("'"))
+                self.repl = re.sub(arg_name, formatted_string, self.repl)
+    
     def get_pattern_string(self) -> str:
         return self.pattern.pattern
