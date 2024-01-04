@@ -11,7 +11,6 @@ python jff.py filename.md
 
 ## TODOS
 
-- Documentar e melhorar código dos contadores (`counter.py`)
 - Melhorar tratamento de Metadados.
 - Customizar as referências e rótulos das figuras.
 - Código com syntax highlighting.

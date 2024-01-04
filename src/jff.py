@@ -1,6 +1,6 @@
 from rules import RULES
 from rule import rawString
-import counter as cntr
+from counter import resolve_numbering
 import re
 from sys import argv
 import os
@@ -32,7 +32,7 @@ def md2html(buffer: str, metadata: dict) -> str:
     for r in RULES:
         new_string = r.apply(new_string)
     
-    new_string = cntr.set_counters(new_string, metadata)
+    new_string = resolve_numbering(new_string, metadata)
         
     return new_string
 
