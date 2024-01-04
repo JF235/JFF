@@ -1,3 +1,8 @@
+METADATA
+---
+COUNTERS: H1, H2, H3, FIG
+---
+
 # Manifolds
 
 The idea of a differentiable manifold had its genesis in the nineteenth century

@@ -11,7 +11,7 @@ python jff.py filename.md
 
 ## TODOS
 
-- Melhorar esquema de contadores. O objetivo é não ter que ficar criando vários contadores globais.
-- Ambientes enumerados com contadores personalizados.
-- Metadados.
+- Documentar e melhorar código dos contadores (`counter.py`)
+- Melhorar tratamento de Metadados.
+- Customizar as referências e rótulos das figuras.
 - Código com syntax highlighting.
