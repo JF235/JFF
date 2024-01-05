@@ -11,5 +11,7 @@ python jff.py filename.md
 
 ## TODOS
 
-- Melhorar tratamento de Metadados.
-- Código com syntax highlighting.
+- Na função `format_repl`
+- Na função `format_string`
+- Ambientes numerados: exemplos, teoremas, lemas, prova de teorema
+- Uma maneira de incluir esses ambientes numerados de forma "direta"

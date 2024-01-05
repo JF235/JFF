@@ -1,9 +1,4 @@
 import re
-from collections.abc import Callable
-
-
-def nop(match, string):
-    return string
 
 
 def rawString(string: str) -> str:
@@ -17,14 +12,10 @@ class Rule:
         pattern: str,
         repl: str,
         flags: re.RegexFlag = re.NOFLAG,
-        pre_func: Callable[[re.Match[str], str], str] = nop,
-        post_func: Callable[[re.Match[str], str], str] = nop,
     ):
         self.name = name
         self.pattern = re.compile(pattern, flags)
         self.repl = repl
-        self.pre_func = pre_func
-        self.post_func = post_func
 
     def __repr__(self):
         return f"Rule({self.name}, {self.get_pattern_string()})"
@@ -43,13 +34,11 @@ class Rule:
         new_string = string
         match = self.pattern.search(new_string)
         span = (0, 0)
-        while match:
-            # Resultado encontrado (match != None)
-            new_string = self.pre_func(match, new_string)
-            new_string, span = self.replace(match, new_string)
-            new_string = self.post_func(match, new_string)
 
+        while match:
+            new_string, span = self.replace(match, new_string)
             match = self.pattern.search(new_string, span[1])
+
         return new_string
 
     def replace(self, match: re.Match[str], string: str) -> tuple[str, tuple[int, int]]:
@@ -64,12 +53,14 @@ class Rule:
             tuple[str, tuple[int, int]]: Tupla com novo padrão substituído e tupla com a posição da substituição
         """
         pos, endpos = match.span()
+        # Não sei se usar match.expand() é a melhor maneira...
         replace = match.expand(self.repl)
         replace = self.format_string(replace)
         new_string = string[:pos] + replace + string[endpos:]
         return new_string, (pos, pos + len(replace))
 
     def format_string(self, string: str) -> str:
+        # TODO: Não gosto do jeito que está implementado...
         new_string = string
         if self.name == "Paragraph" or self.name == "Paragraph w Identation":
             match = re.search(r"(<p>)(.+?)(</p>)", string, re.DOTALL)
@@ -98,9 +89,9 @@ class Rule:
     def format_repl(self, metadata: dict):
         for arg_name in metadata:
             # TODO: Aqui não preciso percorrer todos os itens
-            if '_FORMAT' in arg_name:
+            if "_FORMAT" in arg_name:
                 formatted_string = rawString(metadata[arg_name].strip("'"))
                 self.repl = re.sub(arg_name, formatted_string, self.repl)
-    
+
     def get_pattern_string(self) -> str:
         return self.pattern.pattern
