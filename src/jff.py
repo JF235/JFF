@@ -1,6 +1,6 @@
 from sys import argv
+from pathlib import Path
 from rules import RULES
-from rule import rawString
 from counter import resolve_numbering
 from default_metadata import get_default_metadata
 import re
@@ -37,9 +37,14 @@ def md2html(buffer: str, metadata: dict) -> str:
     return new_string
 
 
-def set_style(string: str) -> str:
+def set_style(stylesheet: str,string: str) -> str:
     pattern = re.compile("STYLEHERE")
-    string = pattern.sub("style.css", string)
+    string = pattern.sub(stylesheet, string)
+    return string
+
+def set_docname(docname:str, string: str) -> str:
+    pattern = re.compile("DOCNAME")
+    string = pattern.sub(docname, string)
     return string
 
 
@@ -65,12 +70,16 @@ def main():
         htmlFile = file.read()
 
     # Conteúdo do arquivo
-    pattern = re.compile("INSERTHERE")
-    # Transforma string htmlBuffer para 'rawString' sem as aspas produzidas
-    # ao obter a forma canônica de representação da string com repr()
-    htmlFile = pattern.sub(rawString(htmlBuffer), htmlFile)
+    match = re.search("INSERTHERE", htmlFile)
+    if match:
+        pos, endpos = match.span()
+        # Transforma string htmlBuffer para 'rawString' sem as aspas produzidas
+        # ao obter a forma canônica de representação da string com repr()
+        htmlFile = htmlFile[:pos] + htmlBuffer + htmlFile[endpos:]
 
-    htmlFile = set_style(htmlFile)
+    htmlFile = set_style('style.css',htmlFile)
+    docname = Path(filename).stem.replace('_', ' ').title()
+    htmlFile = set_docname(docname,htmlFile)
 
     filenameHtml = os.path.splitext(filename)[0]
     with open(f"{filenameHtml}.html", mode="w", encoding="utf8") as file:
