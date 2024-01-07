@@ -39,8 +39,6 @@ def md2html(buffer: str, metadata: dict) -> str:
     new_string = buffer
     
     for r in RULES:
-        # TODO: Aqui deveria estar ocorrendo apenas r.apply()
-        r.format_repl(metadata)
         new_string = r.apply(new_string, metadata)
     
     new_string = resolve_numbering(new_string, metadata)
