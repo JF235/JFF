@@ -54,6 +54,7 @@ class Rule:
         """
         pos, endpos = match.span()
         # Não sei se usar match.expand() é a melhor maneira...
+        # TODO: Coisa horrorosa abaixo, arrumar é preciso!
         if (self.name != "Figure"):
             replace = match.expand(self.repl)
             replace = self.format_string(replace)

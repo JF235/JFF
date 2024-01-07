@@ -27,7 +27,7 @@ ITALIC = Rule("Italic", r"\*(.*?)\*", r"<em>\1</em>")
 DISPLAY_MATH = Rule("Display Math", r"\$\$(.+?)\$\$", r"\[\1\]", re.DOTALL)
 INLINE_MATH = Rule("Inline Math", r"\$(.+?)\$", r"\(\1\)")
 
-_padroes_especiais = r"#|\d\.|[-*]|\$\$|```|<figure|<p"
+_padroes_especiais = r"#|\d\.|[-*]|\$\$|```|<fig|<p"
 _conteudo = r"((.+\n)+)"
 _paragrafo = (
     r"(?<=\n\n)" + f"(?!{_padroes_especiais + r"|[ ]{4}"})" + _conteudo + r"(?=\n)"

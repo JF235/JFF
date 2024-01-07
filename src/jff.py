@@ -9,22 +9,30 @@ import os
 CWD = os.getcwd()
 APPDIR = os.path.realpath(os.path.dirname(__file__)) + '\\..'
 
-def parse_metadata(metadata:dict, metadata_str: str):
-    metadata_arguments = metadata_str.split('\n')
-    for line in metadata_arguments:
-        arg_name, arg_option_str = tuple(line.split(':'))
-        arg_option = arg_option_str.strip()
-        metadata[arg_name] = arg_option
+def read_metadata(string: str) -> tuple[dict[str, str], str]:
+    """Define os metadados baseados nos valores padrões definidos no arquivo `get_dafault_metadata()` e nos valores declarados no arquivo (que tem maior precedência).
 
-def read_metadata(string: str):
+    Args:
+        string (str): conteúdo do arquivo
+
+    Returns:
+        tuple[dict[str, str], str]: Dicionário de metadados e string do arquivo sem os metadados
+    """
+    metadata = get_default_metadata()
     pattern = re.compile(r"METADATA\n---\n(.+?)\n---\n\n", re.DOTALL)
     match = pattern.search(string)
-    metadata = get_default_metadata()
+    
     if match:
+        # Lê cada linha no formato NOME: VALOR
         metadata_str = match.group(1)
-        parse_metadata(metadata, metadata_str)
+        metadata_arguments = metadata_str.split('\n')
+        for line in metadata_arguments:
+            arg_name, arg_option_str = tuple(line.split(':'))
+            arg_option = arg_option_str.strip()
+            metadata[arg_name] = arg_option
         # Remove os metadados do arquivo
         string = string[:match.start()] + string[match.end():]
+    
     return metadata, string
 
 def md2html(buffer: str, metadata: dict) -> str:
@@ -45,8 +53,9 @@ def set_style(stylesheet: str,string: str) -> str:
     string = pattern.sub(stylesheet, string)
     return string
 
-def set_docname(docname:str, string: str) -> str:
+def set_docname(filename:str, string: str) -> str:
     pattern = re.compile("DOCNAME")
+    docname = Path(filename).stem.replace('_', ' ').title()
     string = pattern.sub(docname, string)
     return string
 
@@ -59,14 +68,13 @@ def main():
         return
 
     with open(filename, mode="r", encoding="utf8") as file:
-        buffer = file.read()
-        # Adicionando duas quebras de linha no final
-        # para garantir que as regras funcionem de forma apropriada
-        buffer += "\n\n"
+        string = file.read()
+        # Para garantir que as regras funcionem de forma apropriada...
+        string += "\n\n"
 
-    metadata, buffer = read_metadata(buffer)
+    metadata, string = read_metadata(string)
     
-    htmlBuffer = md2html(buffer, metadata)
+    htmlString = md2html(string, metadata)
 
     # Arquivo base, contendo `head` e `body`
     with open(APPDIR + "\\assets\\base.html", mode="r", encoding="utf8") as file:
@@ -75,17 +83,15 @@ def main():
     # Conteúdo do arquivo
     match = re.search("INSERTHERE", htmlFile)
     if match:
-        pos, endpos = match.span()
-        # Transforma string htmlBuffer para 'rawString' sem as aspas produzidas
-        # ao obter a forma canônica de representação da string com repr()
-        htmlFile = htmlFile[:pos] + htmlBuffer + htmlFile[endpos:]
+        htmlFile = htmlFile[:match.start()] + htmlString + htmlFile[match.end():]
 
+    # Informações adicionais
+    # TODO: Adicionar isso nos metadados
     htmlFile = set_style('style.css',htmlFile)
-    docname = Path(filename).stem.replace('_', ' ').title()
-    htmlFile = set_docname(docname,htmlFile)
+    htmlFile = set_docname(filename,htmlFile)
 
-    filenameHtml = os.path.splitext(filename)[0]
-    with open(f"{filenameHtml}.html", mode="w", encoding="utf8") as file:
+    filename_wo_ext = os.path.splitext(filename)[0]
+    with open(f"{filename_wo_ext}.html", mode="w", encoding="utf8") as file:
         file.write(htmlFile)
 
 
