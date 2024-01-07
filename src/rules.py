@@ -11,7 +11,7 @@ H1 = Rule(
 H2 = Rule(
     "Header 2",
     r"^## (.+)$",
-    r"<h2 COUNTER(H2,+)>H2_FORMAT\1</h2>",
+    r"<h2 COUNTER(H2,+) COUNTER(H3,0)>H2_FORMAT\1</h2>",
     re.MULTILINE,
 )
 
@@ -51,8 +51,9 @@ _unordered_list = f"(({_unordered_item})+)"
 UNORDERED_LIST = Rule("Unordered List", _unordered_list, r"<ul>\1</ul>", re.MULTILINE)
 UNORDERED_ITEM = Rule("Unordered Item", _unordered_item, r"<li>\1</li>", re.MULTILINE)
 
-_figure = r'<figure src="(.+)" size="(.+)" caption="(.+)" label="(.+)">'
-_figure_repl = r'<figure COUNTER(FIG,+,\4)><img src=\1 style="\2" id="fig-\4"><figcaption><span class="figurelabel">FIG_FORMAT</span>\3</figcaption></figure>'
+_figure_params = r'(?: (.+?)="(.+?)")*'
+_figure = r'<fig(?:ure)? src="(.+?)"' + _figure_params + r'>' 
+_figure_repl = r'<figure COUNTER(FIG,+,FIGLABEL)><img src="FIGNAME" FIGSTYLE id="fig-FIGLABEL">FIG_CAPTION</figure>'
 FIGURE = Rule("Figure", _figure, _figure_repl)
 
 REFERENCE = Rule(

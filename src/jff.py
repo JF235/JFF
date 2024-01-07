@@ -6,6 +6,8 @@ from default_metadata import get_default_metadata
 import re
 import os
 
+CWD = os.getcwd()
+APPDIR = os.path.realpath(os.path.dirname(__file__)) + '\\..'
 
 def parse_metadata(metadata:dict, metadata_str: str):
     metadata_arguments = metadata_str.split('\n')
@@ -29,8 +31,9 @@ def md2html(buffer: str, metadata: dict) -> str:
     new_string = buffer
     
     for r in RULES:
+        # TODO: Aqui deveria estar ocorrendo apenas r.apply()
         r.format_repl(metadata)
-        new_string = r.apply(new_string)
+        new_string = r.apply(new_string, metadata)
     
     new_string = resolve_numbering(new_string, metadata)
         
@@ -66,7 +69,7 @@ def main():
     htmlBuffer = md2html(buffer, metadata)
 
     # Arquivo base, contendo `head` e `body`
-    with open("assets/base.html", mode="r", encoding="utf8") as file:
+    with open(APPDIR + "\\assets\\base.html", mode="r", encoding="utf8") as file:
         htmlFile = file.read()
 
     # Conteúdo do arquivo
