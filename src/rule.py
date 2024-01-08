@@ -6,8 +6,7 @@ def rawString(string: str) -> str:
 
 
 # TODO: Talvez eu não precise disso se eu fizer o meu próprio expand
-# Pois estava tendo problemas com o uso de .expand em strings com caracteres
-# escapados
+# Pois estava tendo problemas com o uso de .expand em strings com caracteres escapados
 def default_formatting(self, metadata, match):
     replace = match.expand(self.repl)
     return replace
@@ -49,7 +48,7 @@ class Rule:
 
             # Formata a string que será substituída no lugar do match
             replace = self.formatting(self, metadata, match)
-            new_string = string[:pos] + replace + string[endpos:]
+            new_string = new_string[:pos] + replace + new_string[endpos:]
 
             match = self.pattern.search(new_string, pos + len(replace))
 

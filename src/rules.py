@@ -64,7 +64,7 @@ def paragraph_formatting(self: Rule, metadata: dict[str, str], match) -> str:
     return replace
 
 
-_padroes_especiais = r"#|\d\.|[-*]|\$\$|```|<fig|<p"
+_padroes_especiais = r"#|\d\.|[-*][ ]|\$\$|```|<fig|<p"
 _conteudo = r"((.+\n)+)"
 _paragrafo = (
     r"(?<=\n\n)" + f"(?!{_padroes_especiais + r"|[ ]{4}"})" + _conteudo + r"(?=\n)"
@@ -148,22 +148,15 @@ def figure_formatting(self: Rule, metadata: dict[str, str], match) -> str:
     if figname_match:
         figpath = metadata["FIGPATH"]
         figname, figext = os.path.splitext(figname_match.group(1))
-
-        # Busca os arquivos no caminho com extensão de imagem
-        arquivos = [
-            arquivo
-            for arquivo in os.listdir(figpath)
-            if os.path.splitext(arquivo)[1] in {".jpg", ".gif", ".jpeg", ".png", ".svg"}
-        ]
-        # Obtém o caminho + nome do arquivo + extensão
-        full_figname = next(
-            (
-                os.path.join(figpath, arquivo)
-                for arquivo in arquivos
-                if os.path.splitext(arquivo) == (figname, figext)
-            ),
-            "",
-        )
+        full_figname = figname + figext
+        
+        for arquivo in os.listdir(figpath):
+            if figext and os.path.splitext(arquivo) == (figname, figext):
+                full_figname =  os.path.join(figpath, arquivo)
+                break
+            elif figext == '' and os.path.splitext(arquivo)[0] == figname:
+                full_figname =  os.path.join(figpath, arquivo)
+                break
 
         m = re.search("FIGNAME", replace)
         if m:
