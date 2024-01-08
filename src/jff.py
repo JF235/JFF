@@ -7,6 +7,7 @@ import re
 import os
 
 import counter_rule
+import question_rule
 
 CWD = os.getcwd()
 APPDIR = os.path.realpath(os.path.dirname(__file__)) + '\\..'

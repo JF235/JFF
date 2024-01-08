@@ -32,3 +32,27 @@ figcaption {
     color: #9b4de4;
     text-decoration: none;
 }
+
+.example_text {
+    font-weight: bold;
+}
+
+.question {
+  border: 2px solid #6D6D6D;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 2px #8C8C8C44;
+}
+
+.answer {
+    border: 2px solid #4779bc;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 2px #8c8c8c44;
+}
+
+.answer_title {
+    color: #4779bc;
+}
