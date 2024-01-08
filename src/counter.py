@@ -5,12 +5,12 @@ REFERENCE_DICT: dict[str, int] = {}
 
 
 def resolve_numbering(string: str, metadata: dict) -> str:
-    """Após essa primeira substituição realizada com os métodos, 
-    
+    """Após a primeira substituição realizada com os métodos,
+
     ```python
     rule.apply(string)
     ```
-    
+
     haverão marcadores da forma `COUNTER(countername,operation,label)` que serão tratados nessa função com **substituição direta** e **resolução de referências**.
 
     Args:
@@ -94,7 +94,7 @@ def resolve_counters(string: str) -> str:
         elif counter_operation == "0":
             # Reseta o contador
             COUNTER_DICT[counter_name] = 0
-            new_string = new_string[:pos-1] + new_string[endpos:]
+            new_string = new_string[: pos - 1] + new_string[endpos:]
             endpos = pos
 
         match = pattern.search(new_string, endpos)

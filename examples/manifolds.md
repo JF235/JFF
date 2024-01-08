@@ -1,5 +1,6 @@
 METADATA
 ---
+COUNTERS: EXAMPLE
 FIG_FORMAT: 'Figura COUNTER(H1,=).COUNTER(FIG,=) - '
 REF_FORMAT: 'Figura COUNTER(H1,=).COUNTER(FIG,=,\1)'
 ---
@@ -45,11 +46,12 @@ definition is reasonable. A **topology** $\tau$ on a set $X$ is a family of subs
 
 A topological space (or, simply, a space) is a set X endowed with a topology.
 
-**Example 3.1** Let $X$ be a finite set, and let $τ$ be the set of all subsets of $X$. This is
+<example>
+Let $X$ be a finite set, and let $τ$ be the set of all subsets of $X$. This is
 called the **discrete topology** on $X$.
+</example>
 
-A **neighborhood** of $p ∈ X$ is any open set containing $p$. If q lies in a neigh-
-borhood of $p$ we say that $q$ is **near** $p$. Topology is therefore sometimes called the
+A **neighborhood** of $p ∈ X$ is any open set containing $p$. If q lies in a neighborhood of $p$ we say that $q$ is **near** $p$. Topology is therefore sometimes called the
 study of nearness relations. A topology on $X$ is called **Hausdorff** if the points
 in every pair lie in disjoint neighborhoods or, more technically, if for every two
 points $p, q ∈ X$, there exist two disjoint open sets $U$ and $V$ such that $p ∈ U$

@@ -1,4 +1,3 @@
-
 def get_default_metadata() -> dict:
     return {
         "COUNTERS": "H1, H2, H3, FIG",
@@ -8,5 +7,5 @@ def get_default_metadata() -> dict:
         "FIG_FORMAT": "'Figure COUNTER(FIG,=) - '",
         "REF_FORMAT": r"'Fig.&nbsp;COUNTER(FIG,=,\1)'",
         "FIGSTYLE": "width: 50%",
-        "FIGPATH": ".\\"
+        "FIGPATH": ".\\",
     }

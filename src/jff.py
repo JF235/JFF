@@ -6,8 +6,11 @@ from default_metadata import get_default_metadata
 import re
 import os
 
+import counter_rule
+
 CWD = os.getcwd()
 APPDIR = os.path.realpath(os.path.dirname(__file__)) + '\\..'
+
 
 def read_metadata(string: str) -> tuple[dict[str, str], str]:
     """Define os metadados baseados nos valores padrões definidos no arquivo `get_dafault_metadata()` e nos valores declarados no arquivo (que tem maior precedência).
@@ -21,7 +24,7 @@ def read_metadata(string: str) -> tuple[dict[str, str], str]:
     metadata = get_default_metadata()
     pattern = re.compile(r"METADATA\n---\n(.+?)\n---\n\n", re.DOTALL)
     match = pattern.search(string)
-    
+
     if match:
         # Lê cada linha no formato NOME: VALOR
         metadata_str = match.group(1)
@@ -29,29 +32,34 @@ def read_metadata(string: str) -> tuple[dict[str, str], str]:
         for line in metadata_arguments:
             arg_name, arg_option_str = tuple(line.split(':'))
             arg_option = arg_option_str.strip()
-            metadata[arg_name] = arg_option
+            if arg_name == 'COUNTERS':
+                metadata[arg_name] += f', {arg_option}'
+            else:
+                metadata[arg_name] = arg_option
         # Remove os metadados do arquivo
-        string = string[:match.start()] + string[match.end():]
-    
+        string = string[: match.start()] + string[match.end() :]
+
     return metadata, string
+
 
 def md2html(buffer: str, metadata: dict) -> str:
     new_string = buffer
-    
+
     for r in RULES:
         new_string = r.apply(new_string, metadata)
-    
+
     new_string = resolve_numbering(new_string, metadata)
-        
+
     return new_string
 
 
-def set_style(stylesheet: str,string: str) -> str:
+def set_style(stylesheet: str, string: str) -> str:
     pattern = re.compile("STYLEHERE")
     string = pattern.sub(stylesheet, string)
     return string
 
-def set_docname(filename:str, string: str) -> str:
+
+def set_docname(filename: str, string: str) -> str:
     pattern = re.compile("DOCNAME")
     docname = Path(filename).stem.replace('_', ' ').title()
     string = pattern.sub(docname, string)
@@ -71,7 +79,7 @@ def main():
         string += "\n\n"
 
     metadata, string = read_metadata(string)
-    
+
     htmlString = md2html(string, metadata)
 
     # Arquivo base, contendo `head` e `body`
@@ -81,12 +89,12 @@ def main():
     # Conteúdo do arquivo
     match = re.search("INSERTHERE", htmlFile)
     if match:
-        htmlFile = htmlFile[:match.start()] + htmlString + htmlFile[match.end():]
+        htmlFile = htmlFile[: match.start()] + htmlString + htmlFile[match.end() :]
 
     # Informações adicionais
     # TODO: Adicionar isso nos metadados
-    htmlFile = set_style('style.css',htmlFile)
-    htmlFile = set_docname(filename,htmlFile)
+    htmlFile = set_style("style.css", htmlFile)
+    htmlFile = set_docname(filename, htmlFile)
 
     filename_wo_ext = os.path.splitext(filename)[0]
     with open(f"{filename_wo_ext}.html", mode="w", encoding="utf8") as file:
