@@ -1,6 +1,6 @@
 METADATA
 ---
-FIGPATH: navigation_imgs
+MEDIAPATH: navigation_imgs
 ---
 
 \(
@@ -13,6 +13,8 @@ FIGPATH: navigation_imgs
 ## Fundamental Concepts
 
 TODO
+
+# Coordinate Frames, Kinematics, and the Earth
 
 ## Coordinate Frames
 
@@ -295,6 +297,53 @@ $$\bvec{u}_\beta = \mathbf{C}_\alpha^\beta\mathbf{M}_\alpha\mathbf{C}_\beta^\alp
 <question> 
 Quais as singularidades em ângulos de Euler?
 </question>
+
+<answer>
+A princípio, os ângulos de Euler são impecáveis, uma vez que dados os três ângulos $(\phi, \theta, \psi)$ é possível converter entre dois sistemas arbitrários. 
+
+O problema ocorre em interpolações, por exemplo, quando uma determinada rotação intermediária acaba alinhando dois eixos de rotação. Isso é chamado de **Gimbal Lock**. 
+
+Vamos demonstrar esses problemas com base em um exemplo, no qual desejo rotacionar a *Suzzane* em duas etapas.
+
+1. Rotacionar -90 graus em torno de $z$ (global)
+2. Rotacionar -90 graus em torno de $x$ (global)
+
+O resultado esperado é mostrado no vídeo abaixo
+
+<vid src="rotate-yxz" caption="Rotação adequada sem Gimbal Lock">
+
+Na ordem de rotação XZY, ou seja, com matriz de rotação dada por
+
+$$\mathbf{C} = R_x(\phi)R_z(\psi)R_y(\theta)$$
+
+O resultado é dado por
+
+<vid src="rotate-xyz" caption="Rotação com Gimbal Lock">
+
+A diferença entre os resultados aparece por conta da ordem das multiplicações.
+
+Quando $\psi = -\pi/2$, temos a matriz na forma
+
+$$
+\begin{pmatrix}
+0 & 1 & 0\\
+-\cos \left(\phi +\theta \right) & 0 & -\sin \left(\phi +\theta \right)\\
+-\sin \left(\phi +\theta \right) & 0 & \cos \left(\phi +\theta \right)
+\end{pmatrix}
+$$
+
+Indicando que as rotações em torno de $x$ e $y$ são redundantes (causam o mesmo efeito). Dizemos então que um dos graus de liberdade de rotação foi perdido.
+
+Mais especificamente, o grau de rotação perdido é justamente aquele associado a rotação em torno do $x$ global. Dessa forma, não há mais como atingir o objetivo.
+
+Para recuperar um dos graus de liberdade, o software *Blender* precisa desfazer parte da primeira rotação, desbloqueando a trava com relação a segunda rotação em torno de $x$ global, resultando no movimento estranho.
+
+Podemos ver isso nas figuras abaixo
+
+<fig src="interp-error">
+<fig src="interp-certo">
+
+</answer>
 
 <question>
 Qual a representação de um quaternion e quais os graus de liberdade?

@@ -20,11 +20,20 @@ img {
     display: block;
 }
 
+video {
+    margin: 0 auto;
+    display: block;
+}
+
 figcaption {
     text-align: center;
 }
 
 .figurelabel {
+    font-weight: bold;
+}
+
+.videolabel {
     font-weight: bold;
 }
 
@@ -40,7 +49,7 @@ figcaption {
 .question {
   border: 2px solid #6D6D6D;
   padding: 10px;
-  margin: 5px;
+  margin: 50px 5px 5px 5px;
   border-radius: 12px;
   box-shadow: 2px 2px 2px #8C8C8C44;
 }
@@ -48,7 +57,7 @@ figcaption {
 .answer {
     border: 2px solid #4779bc;
     padding: 10px;
-    margin: 5px;
+    margin: 5px 5px 50px 5px;
     border-radius: 12px;
     box-shadow: 2px 2px 2px #8c8c8c44;
 }
