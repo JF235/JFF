@@ -273,13 +273,6 @@ REFERENCE = Rule(
     formatting=reference_formattig,
 )
 
-CODE = Rule(
-    "Code",
-    r"\`\`\`(.+?)\n(.+?)\`\`\`",
-    '<pre><code class="language-\\1">\\2</code></pre>',
-    flags=re.DOTALL,
-)
-
 RULES = [
     P,
     P_IDENT,
@@ -294,7 +287,6 @@ RULES = [
     ORDERED_ITEM,
     UNORDERED_LIST,
     UNORDERED_ITEM,
-    CODE,
     FIGURE,
     VIDEO,
     REFERENCE,

@@ -3,9 +3,11 @@ from pathlib import Path
 from rules import RULES
 from counter import resolve_numbering
 from default_metadata import get_default_metadata
+from code_support import apply_code, resolve_code
 import re
 import os
 
+# TODO: Não permitir que código seja executado lá dentro
 import counter_rule
 import question_rule
 
@@ -46,10 +48,13 @@ def read_metadata(string: str) -> tuple[dict[str, str], str]:
 def md2html(buffer: str, metadata: dict) -> str:
     new_string = buffer
 
+    new_string = apply_code(new_string, metadata)
+    
     for r in RULES:
         new_string = r.apply(new_string, metadata)
 
     new_string = resolve_numbering(new_string, metadata)
+    new_string = resolve_code(new_string)
 
     return new_string
 

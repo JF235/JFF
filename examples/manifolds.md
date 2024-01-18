@@ -23,7 +23,7 @@ living in $\mathbb{R}^3$ , but one can consider them in their own right just as 
 together in certain ways. The technical definition of a manifold requires considerable background, which we will try to keep to a minimum. First, we need the idea
 of a topology.
 
-<figure src="manifolds.png" size="width:70%" caption="The 2-sphere and the 2-torus" label="manifolds">
+<figure src="manifolds.png" size="width:70%" caption="The 2-sphere $S^2$ and the 2-torus $T^2$" label="manifolds">
 
 ## Basic Topology
 
