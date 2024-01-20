@@ -1,10 +1,10 @@
-if ($args.Count -eq 1) {
+﻿if ($args.Count -eq 1) {
     # Se houver um argumento, usa esse valor como nome do arquivo
     $file = $args[0]
 
     # Verifica se o arquivo tem a extensão .md
     if (-not ($file -like "*.md")) {
-        $string = "Arquivo $file com extensao nao suportada"
+        $string = "Arquivo $file com extensão não suportada"
         Write-Output $string
         Exit
     }
@@ -19,11 +19,11 @@ else {
         $file = $arquivosMD[0].Name
     }
     elseif ($arquivosMD.Count -gt 1) {
-        Write-Output "Ha mais de um arquivo .md no diretorio"
+        Write-Output "Há mais de um arquivo .md no diretório"
         Exit
     }
     else {
-        Write-Output "Nenhum arquivo .md encontrado no diretorio"
+        Write-Output "Nenhum arquivo .md encontrado no diretório"
         Exit
     }
 }

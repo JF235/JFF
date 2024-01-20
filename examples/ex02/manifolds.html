@@ -173,38 +173,38 @@ figcaption {
 
 <h1>1. Manifolds</h1>
 
-<p>The idea of a differentiable manifold had its genesis in the nineteenth century
+<p> The idea of a differentiable manifold had its genesis in the nineteenth century
 with the work of Carl Friedrich Gauss and of Georg Friedrich Bernhard Riemann.
 Gauss was interested in surveying and cartography, which led him to develop the
 tools of calculus on curved surfaces. His famous <em>theorema egregium</em>, or remarkable theorem, revealed that one could consider the intrinsic properties of a surface
 independently of the way in which it was embedded in three-dimensional space,
 and this led him, Riemann, and others, to abstract these concepts even further.
 Their ideas have had far reaching applications in many areas of mathematics and
-the natural sciences.</p>
+the natural sciences. </p>
 
-<p>Roughly, an \(n\)-dimensional manifold (or \(n\)-manifold) can be thought of as a kind
+<p> Roughly, an \(n\)-dimensional manifold (or \(n\)-manifold) can be thought of as a kind
 of patchwork quilt built from pieces of \(\mathbb{R}^n\) . Classic examples of 2-manifolds are
 the 2-sphere \(S^2\) and the 2-torus \(T^2\) (see <a href="#fig-manifolds" class="reference">Figura 1.1</a>). Usually one pictures these as
 living in \(\mathbb{R}^3\) , but one can consider them in their own right just as bits of \(\mathbb{R}^2\) sewn
 together in certain ways. The technical definition of a manifold requires considerable background, which we will try to keep to a minimum. First, we need the idea
-of a topology.</p>
+of a topology. </p>
 
 <figure><img src=".\manifolds.png" style="width:70%" id="fig-manifolds"><figcaption><span class="figurelabel">Figura 1.1 - </span>The 2-sphere \(S^2\) and the 2-torus \(T^2\)</figcaption></figure>
 
 <h2>1.1. Basic Topology</h2>
 
-<p>Consider a basketball. When it is inflated, its surface is a sphere. But when it is
+<p> Consider a basketball. When it is inflated, its surface is a sphere. But when it is
 deflated its surface <em>is still a topological sphere</em>. In fact, we could deform the sphere
 in any way we like and, as long as we do not tear it anywhere, it is still topologically a sphere. We say that all these shapes have the same <em>topology</em> but, since
 the distance between the points on the surface has changed, they have different
-<em>geometries</em> (see <a href="#fig-manifolds2" class="reference">Figura 1.2</a>).</p>
+<em>geometries</em> (see <a href="#fig-manifolds2" class="reference">Figura 1.2</a>). </p>
 
 <figure><img src=".\manifolds2.png" style="width:70%" id="fig-manifolds2"><figcaption><span class="figurelabel">Figura 1.2 - </span>Topological 2-spheres.</figcaption></figure>
 
-<p>At first sight the actual definition of a topology appears to have nothing to do
+<p> At first sight the actual definition of a topology appears to have nothing to do
 with these notions. Only after much study does one begin to see why the following
 definition is reasonable. A <strong>topology</strong> \(\tau\) on a set \(X\) is a family of subsets of \(X\), called
-<em>open</em> sets, satisfying the following.</p>
+<em>open</em> sets, satisfying the following. </p>
 
 <ol>
 
@@ -222,24 +222,29 @@ The empty set \(∅\) and \(X\) are both open.
 
 </ol>
 
-<p>A topological space (or, simply, a space) is a set X endowed with a topology.</p>
+<p> A topological space (or, simply, a space) is a set X endowed with a topology. </p>
 
 <div class="numbered_example"><span class="example_text">Exemplo 1. </span>
 Let \(X\) be a finite set, and let \(τ\) be the set of all subsets of \(X\). This is
 called the <strong>discrete topology</strong> on \(X\).
 </div>
 
-<p>A <strong>neighborhood</strong> of \(p ∈ X\) is any open set containing \(p\). If q lies in a neighborhood of \(p\) we say that \(q\) is <strong>near</strong> \(p\). Topology is therefore sometimes called the
+<p> A <strong>neighborhood</strong> of \(p ∈ X\) is any open set containing \(p\). If q lies in a neighborhood of \(p\) we say that \(q\) is <strong>near</strong> \(p\). Topology is therefore sometimes called the
 study of nearness relations. A topology on \(X\) is called <strong>Hausdorff</strong> if the points
 in every pair lie in disjoint neighborhoods or, more technically, if for every two
 points \(p, q ∈ X\), there exist two disjoint open sets \(U\) and \(V\) such that \(p ∈ U\)
 and \(q ∈ V\). We will primarily be interested in Hausdorff topologies, because these
 coincide with our intuition that points are isolated objects; other sorts of topologies
-are generally considered to be pathological (at least by non-topologists).</p>
+are generally considered to be pathological (at least by non-topologists). </p>
 
 
 
 <script>
+window.MathJax = {
+  tex: {
+    displayMath: [ ['\\[', '\\]'] ], // Remove suporte para $$ ... $$
+  }
+};
 hljs.highlightAll();
 </script>
 </body>

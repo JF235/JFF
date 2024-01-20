@@ -1,4 +1,8 @@
 {
     "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.autoImportCompletions": false
+    "python.analysis.autoImportCompletions": false,
+    "[powershell]": {
+        "files.encoding": "utf8bom",
+        "files.autoGuessEncoding": true
+    }
 }

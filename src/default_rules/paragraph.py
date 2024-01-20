@@ -17,7 +17,7 @@ def paragraph_formatting(self: Rule, metadata: dict[str, str], match) -> str:
 
 # TODO: Acrescentar somente alguns padroes especiais validos e nao desconsierar os invalidos
 # Por exemplo, padroes_validos = '*', '$', '<em>', ...
-_padroes_especiais = r"#|\d\.|[-*][ ]|\$\$|```|<"
+_padroes_especiais = r"#|\d\.|[-*][ ]|\$\$|```|<|\\\["
 _conteudo = r"((.+\n)+)"
 _paragrafo = (
     r"(?<=\n\n)" + f"(?!{_padroes_especiais + r"|[ ]{4}"})" + _conteudo + r"(?=\n)"

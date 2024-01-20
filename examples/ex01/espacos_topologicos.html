@@ -173,43 +173,43 @@ figcaption {
 
 <h1>1. Espaços Topológicos</h1>
 
-<p>Espaços topológicos são estruturas matemáticas que permitem a formalização dos conceitos de convergência, conexidade e continuidade. 
-Eles aparecem em praticamente todos os ramos da matemática moderna e são uma noção unificadora central.</p>
+<p> Espaços topológicos são estruturas matemáticas que permitem a formalização dos conceitos de convergência, conexidade e continuidade. 
+Eles aparecem em praticamente todos os ramos da matemática moderna e são uma noção unificadora central. </p>
 
-<p>O ramo da matemática que estuda os espaços topológicos é denominado topologia.</p>
+<p> O ramo da matemática que estuda os espaços topológicos é denominado topologia. </p>
 
 <h2>1.1. Definição</h2>
 
-<p>Uma <strong>topologia</strong> em um conjunto \(X\) é uma coleção \(\tau\) em partes de \(X\), chamados os <strong>abertos</strong> da topologia, com as seguintes propriedades:</p>
+<p> Uma <strong>topologia</strong> em um conjunto \(X\) é uma coleção \(\tau\) em partes de \(X\), chamados os <strong>abertos</strong> da topologia, com as seguintes propriedades: </p>
 
 <ol>
 
 <li>
 <em>O conjunto vazio e o próprio conjunto \(X\) são abertos.</em> 
 
-    <p>\(\emptyset, X\in \tau\)</p>
+    <p> \(\emptyset, X\in \tau\) </p>
 </li>
 
 <li>
 <em>A intersecção de dois conjuntos abertos é um aberto.</em>
 
-    <p>Se \(A_1, A_2 \in \tau\), 
-    então \(A_1\cap A_2 \in \tau\)</p>
+    <p> Se \(A_1, A_2 \in \tau\), 
+    então \(A_1\cap A_2 \in \tau\) </p>
 </li>
 
 <li>
 <em>A união de uma família arbitrária de abertos é um aberto.</em>
 
-    <p>Dada uma família arbitrária \((A_\lambda)_{\lambda \in L}\), com \(A_\lambda \in \tau, \forall \lambda \in L\), tem-se \(\left(\bigcup\limits_{\lambda\in L}A_\lambda\right) \in \tau\)</p>
+    <p> Dada uma família arbitrária \((A_\lambda)_{\lambda \in L}\), com \(A_\lambda \in \tau, \forall \lambda \in L\), tem-se \(\left(\bigcup\limits_{\lambda\in L}A_\lambda\right) \in \tau\) </p>
 </li>
 
 </ol>
 
-<p>Um <strong>espaço topológico</strong> é um par \((X, \tau)\) onde \(X\) é um conjunto e \(\tau\) é uma topologia em \(X\).</p>
+<p> Um <strong>espaço topológico</strong> é um par \((X, \tau)\) onde \(X\) é um conjunto e \(\tau\) é uma topologia em \(X\). </p>
 
 <h2>1.2. Exemplo</h2>
 
-<p>Dado o conjunto \(X=\{1,2,3\}\), possíveis topologias \(\tau\) são:</p>
+<p> Dado o conjunto \(X=\{1,2,3\}\), possíveis topologias \(\tau\) são: </p>
 
 <ul>
 
@@ -235,7 +235,7 @@ Eles aparecem em praticamente todos os ramos da matemática moderna e são uma n
 
 </ul>
 
-<p>Exemplos de conjuntos que não formam uma topologia</p>
+<p> Exemplos de conjuntos que não formam uma topologia </p>
 
 <ul>
 
@@ -251,13 +251,13 @@ Eles aparecem em praticamente todos os ramos da matemática moderna e são uma n
 
 <h1>2. Grupos</h1>
 
-<p>Em matemática, um grupo é um conjunto de elementos associados a uma operação que combina dois elementos quaisquer para formar um terceiro. Para se qualificar como grupo o conjunto e a operação devem satisfazer algumas condições chamadas axiomas de grupo: associatividade, elemento neutro e elementos inversos. Apesar destes serem comuns a muitas estruturas matemáticas familiares - e.g. os números inteiros munidos da adição formam um grupo - a formulação dos axiomas é independente da natureza concreta do grupo e sua operação. Isso permite lidar-se com entidade de origens matemáticas completamente diferentes de uma maneira flexível, mas retendo os aspectos estruturais essenciais de muitos objetos da álgebra abstrata e além. A ubiquidade dos grupos em inúmeras áreas - dentro e fora da matemática - os tornam um princípio organizador central da matemática contemporânea.</p>
+<p> Em matemática, um grupo é um conjunto de elementos associados a uma operação que combina dois elementos quaisquer para formar um terceiro. Para se qualificar como grupo o conjunto e a operação devem satisfazer algumas condições chamadas axiomas de grupo: associatividade, elemento neutro e elementos inversos. Apesar destes serem comuns a muitas estruturas matemáticas familiares - e.g. os números inteiros munidos da adição formam um grupo - a formulação dos axiomas é independente da natureza concreta do grupo e sua operação. Isso permite lidar-se com entidade de origens matemáticas completamente diferentes de uma maneira flexível, mas retendo os aspectos estruturais essenciais de muitos objetos da álgebra abstrata e além. A ubiquidade dos grupos em inúmeras áreas - dentro e fora da matemática - os tornam um princípio organizador central da matemática contemporânea. </p>
 
 <h2>2.1. Definição</h2>
 
-<p>Seja \(G\) um conjunto e \(\ast\) uma <strong>operação binária</strong> definida sobre \(G\). O par ordenado \((G,\ast)\) é um grupo se são satisfeitos os seguintes axiomas:</p>
+<p> Seja \(G\) um conjunto e \(\ast\) uma <strong>operação binária</strong> definida sobre \(G\). O par ordenado \((G,\ast)\) é um grupo se são satisfeitos os seguintes axiomas: </p>
 
-<p>Sendo \(a, b, c \in G\)</p>
+<p> Sendo \(a, b, c \in G\) </p>
 
 <ul>
 
@@ -282,6 +282,11 @@ Eles aparecem em praticamente todos os ramos da matemática moderna e são uma n
 
 
 <script>
+window.MathJax = {
+  tex: {
+    displayMath: [ ['\\[', '\\]'] ], // Remove suporte para $$ ... $$
+  }
+};
 hljs.highlightAll();
 </script>
 </body>
