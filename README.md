@@ -11,10 +11,7 @@ python jff.py filename.md
 
 ## TODOS
 
-- Formatação de referências para figuras, equações, vídeos e códigos
-- Permitir que as referências também chamem contadores simples, como COUNTER(H1,=).COUNTER(EQ,=)
 - Incluir as legendas de ambientes separadamente.
-- Os metadados devem ser construídos dentro das regras. Por exemplo, os metadados de formatação de Headers devem estar lá no arquivo associado
 - Incluir arquivo css padrão nos metadados
 - Melhorar a forma de incluir os arquivos css para novas regras
 - Adicionar uma documentação com todos os recursos disponíveis

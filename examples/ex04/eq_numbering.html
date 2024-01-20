@@ -36,11 +36,19 @@ figcaption {
     text-align: center;
 }
 
+.caption {
+    text-align: center;
+}
+
 .figurelabel {
     font-weight: bold;
 }
 
 .videolabel {
+    font-weight: bold;
+}
+
+.codelabel {
     font-weight: bold;
 }
 
@@ -174,8 +182,11 @@ figcaption {
 
 <h1>1. Teste</h1>
 
-<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem dui, tempus eget volutpat ut, mattis at justo. Nulla commodo magna vitae diam egestas, at tempus erat lacinia. Phasellus at blandit elit, non eleifend erat. Vivamus venenatis, tellus quis sollicitudin molestie, massa ante euismod risus, at mollis orci sem a sem. Maecenas fringilla congue fringilla. Ut tortor urna, tempor in nibh vitae, luctus ullamcorper urna. <a href="#w-fergie" class="reference">Fig.&nbsp;1</a> Proin iaculis risus sed ante facilisis molestie. Fusce dictum vitae neque et pharetra. </p>
+<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem dui, tempus eget volutpat ut, mattis at justo. Nulla commodo magna vitae diam egestas, at tempus erat lacinia. Phasellus at blandit elit, non eleifend erat. Vivamus venenatis, tellus quis sollicitudin molestie, massa ante euismod risus,  <a href="#helloworld" class="reference">Código&nbsp;2</a> at mollis orci sem a sem. Maecenas fringilla congue fringilla. Ut tortor urna, tempor in nibh vitae, luctus ullamcorper urna. <a href="#w-fergie" class="reference">Fig.&nbsp;1</a> Proin iaculis risus sed ante facilisis molestie. Fusce dictum vitae neque et pharetra. </p>
 
+<div class="caption" id="foo"><span class="codelabel">Código 1 - </span>
+foo() function
+</div>
 <pre><code class="language-python">def foo():
     return 1*1*1
 </code></pre>
@@ -198,6 +209,9 @@ E = mc^2
 
 <p> Integer tincidunt sapien orci, nec ultricies justo porttitor sit amet. Phasellus id congue dolor. Ut at turpis et nunc cursus lacinia eu vitae libero. Duis at facilisis arcu. Aliquam erat volutpat. Cras non turpis nisi. Mauris feugiat lectus vel vehicula malesuada <a href="#wo-fergie" class="reference">Fig.&nbsp;2</a>. Proin malesuada pretium gravida. Donec ac molestie ligula, non volutpat libero. </p>
 
+<div class="caption" id="helloworld"><span class="codelabel">Código 2 - </span>
+Um simples Hello, World!
+</div>
 <pre><code class="language-c++">#include <stdio.h>
 
 int main(void){
@@ -205,7 +219,7 @@ int main(void){
 }
 </code></pre>
 
-<p> Pellentesque eu consequat diam, eget bibendum leo. Nam tristique, turpis eu vestibulum tempus, nunc ex laoreet urna, efficitur sodales neque magna non elit. Sed porta, felis vel tincidunt auctor, enim velit vehicula est, vel aliquam ligula diam quis nunc. Integer id felis felis. Integer ullamcorper luctus iaculis. Integer vulputate faucibus risus vitae blandit. Suspendisse vestibulum dignissim orci, et tempor est placerat eget. Nulla hendrerit accumsan laoreet. Nullam finibus imperdiet orci in molestie. Proin dapibus tortor ut ipsum fermentum, et ultrices sapien hendrerit. Proin eget ex sem. </p>
+<p> Pellentesque eu consequat diam, eget bibendum leo. Nam tristique, turpis eu vestibulum tempus, nunc ex laoreet urna, efficitur sodales neque magna non elit. Sed porta, felis vel tincidunt auctor, enim velit vehicula est, vel aliquam ligula diam quis nunc. Integer id felis felis. Integer ullamcorper luctus iaculis. Integer vulputate faucibus risus vitae blandit. Suspendisse vestibulum dignissim orci, et tempor est placerat eget. Nulla hendrerit accumsan laoreet. Nullam finibus imperdiet orci in molestie. Proin <a href="#foo" class="reference">Código&nbsp;1</a> dapibus tortor ut ipsum fermentum, et ultrices sapien hendrerit. Proin eget ex sem. </p>
 
 <figure><img src="https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2018/11/black-eyed-peas-masters-sun-vol-1.jpeg" style="width: 50%" id="wo-fergie"><figcaption><span class="figurelabel">Figura 2 - </span>Cade a fergie</figcaption></figure>
 

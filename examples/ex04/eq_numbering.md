@@ -6,8 +6,11 @@ FIG_FORMAT: 'Figura COUNTER(FIG,=) - '
 
 # Teste
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem dui, tempus eget volutpat ut, mattis at justo. Nulla commodo magna vitae diam egestas, at tempus erat lacinia. Phasellus at blandit elit, non eleifend erat. Vivamus venenatis, tellus quis sollicitudin molestie, massa ante euismod risus, at mollis orci sem a sem. Maecenas fringilla congue fringilla. Ut tortor urna, tempor in nibh vitae, luctus ullamcorper urna. <a label="w-fergie"> Proin iaculis risus sed ante facilisis molestie. Fusce dictum vitae neque et pharetra.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem dui, tempus eget volutpat ut, mattis at justo. Nulla commodo magna vitae diam egestas, at tempus erat lacinia. Phasellus at blandit elit, non eleifend erat. Vivamus venenatis, tellus quis sollicitudin molestie, massa ante euismod risus,  <a label="helloworld"> at mollis orci sem a sem. Maecenas fringilla congue fringilla. Ut tortor urna, tempor in nibh vitae, luctus ullamcorper urna. <a label="w-fergie"> Proin iaculis risus sed ante facilisis molestie. Fusce dictum vitae neque et pharetra.
 
+<caption label="foo">
+foo() function
+</caption>
 ```python
 def foo():
     return 1*1*1
@@ -27,6 +30,9 @@ Morbi luctus, augue quis fringilla hendrerit, massa dui scelerisque ligula, non 
 
 Integer tincidunt sapien orci, nec ultricies justo porttitor sit amet. Phasellus id congue dolor. Ut at turpis et nunc cursus lacinia eu vitae libero. Duis at facilisis arcu. Aliquam erat volutpat. Cras non turpis nisi. Mauris feugiat lectus vel vehicula malesuada <a label="wo-fergie">. Proin malesuada pretium gravida. Donec ac molestie ligula, non volutpat libero.
 
+<caption label="helloworld">
+Um simples Hello, World!
+</caption>
 ```c++
 #include <stdio.h>
 
@@ -35,7 +41,7 @@ int main(void){
 }
 ```
 
-Pellentesque eu consequat diam, eget bibendum leo. Nam tristique, turpis eu vestibulum tempus, nunc ex laoreet urna, efficitur sodales neque magna non elit. Sed porta, felis vel tincidunt auctor, enim velit vehicula est, vel aliquam ligula diam quis nunc. Integer id felis felis. Integer ullamcorper luctus iaculis. Integer vulputate faucibus risus vitae blandit. Suspendisse vestibulum dignissim orci, et tempor est placerat eget. Nulla hendrerit accumsan laoreet. Nullam finibus imperdiet orci in molestie. Proin dapibus tortor ut ipsum fermentum, et ultrices sapien hendrerit. Proin eget ex sem.
+Pellentesque eu consequat diam, eget bibendum leo. Nam tristique, turpis eu vestibulum tempus, nunc ex laoreet urna, efficitur sodales neque magna non elit. Sed porta, felis vel tincidunt auctor, enim velit vehicula est, vel aliquam ligula diam quis nunc. Integer id felis felis. Integer ullamcorper luctus iaculis. Integer vulputate faucibus risus vitae blandit. Suspendisse vestibulum dignissim orci, et tempor est placerat eget. Nulla hendrerit accumsan laoreet. Nullam finibus imperdiet orci in molestie. Proin <a label="foo"> dapibus tortor ut ipsum fermentum, et ultrices sapien hendrerit. Proin eget ex sem.
 
 <fig src="https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2018/11/black-eyed-peas-masters-sun-vol-1.jpeg" caption="Cade a fergie" label="wo-fergie">
 

@@ -1,6 +1,14 @@
 from rule import Rule
 import re
-from jff_globals import CODE_REF
+from jff_globals import CODE_REF, METADATA
+
+METADATA["COUNTERS"] += ", CODE"
+METADATA.update(
+    {
+        "CODE_FORMAT": "'Código COUNTER(CODE,=) - '",
+        "CODE_REF": r"'Código&nbsp;COUNTER(CODE,=,\1)'",
+    }
+)
 
 
 def code_formatting(self: Rule, match) -> str:
@@ -8,14 +16,21 @@ def code_formatting(self: Rule, match) -> str:
     # Coloca no lugar
     replace = f"<CODEREF({num_codes})/>"
     CODE_REF[num_codes] = match.expand(self.repl)
+    if match.group(2):
+        label = "," + match.group(1) if match.group(1) else ""
+        code_id = f' id="{match.group(1)}"' if match.group(1) else ""
+        replace = (
+            f'<div class="caption"{code_id} COUNTER(CODE,+{label})><span class="codelabel">{METADATA["CODE_FORMAT"].strip("'")}</span>{match.group(2)}</div>\n'
+            + replace
+        )
     return replace
 
 
 CODE = Rule(
     "Code",
-    r"^\`\`\`(?!\n)(.+?)\n(.+?)\`\`\`(?=\n\n)",
-    '<pre><code class="language-\\1">\\2</code></pre>',
-    flags= re.DOTALL | re.MULTILINE,
+    r'(?:<caption(?: label="(.+?)")?>(.+?)</caption>\n)?^\`\`\`(?!\n)(.+?)\n(.+?)\`\`\`(?=\n\n)',
+    r'<pre><code class="language-\3">\4</code></pre>',
+    flags=re.DOTALL | re.MULTILINE,
     formatting=code_formatting,
 )
 

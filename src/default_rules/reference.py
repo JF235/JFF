@@ -12,7 +12,7 @@ def reference_formattig(self: Rule, match) -> str:
 
 REFERENCE = Rule(
     "Reference",
-    r'<a label="(.+)">',
+    r'<a label="(.+?)">',
     "",
     formatting=reference_formattig,
 )
