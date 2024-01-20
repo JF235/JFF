@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+body {
+    text-align: justify;
+    margin: 0 auto;
+    width: 70%;
+    font-size: larger;
+    font-family: 'TeX Gyre Schola';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-align: justify;
+}
+
+img {
+    margin: 0 auto;
+    display: block;
+}
+
+video {
+    margin: 0 auto;
+    display: block;
+}
+
+figcaption {
+    text-align: center;
+}
+
+.figurelabel {
+    font-weight: bold;
+}
+
+.videolabel {
+    font-weight: bold;
+}
+
+.reference, .reference:visited {
+    color: #9b4de4;
+    text-decoration: none;
+}
+
+.example_text {
+    font-weight: bold;
+}
+
+.question {
+  border: 2px solid #6D6D6D;
+  padding: 10px;
+  margin: 50px 5px 5px 5px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 2px #8C8C8C44;
+}
+
+.answer {
+    border: 2px solid #4779bc;
+    padding: 10px;
+    margin: 5px 5px 50px 5px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 2px #8c8c8c44;
+}
+
+.answer_title {
+    color: #4779bc;
+}
+
+/* Dracula Theme v1.2.5
+ *
+ * https://github.com/dracula/highlightjs
+ *
+ * Copyright 2016-present, All rights reserved
+ *
+ * Code licensed under the MIT license
+ *
+ * @author Denis Ciccale <dciccale@gmail.com>
+ * @author Zeno Rocha <hi@zenorocha.com>
+ */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #282a36;
+  /*Modificao do JF*/
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+.hljs-built_in,
+.hljs-selector-tag,
+.hljs-section,
+.hljs-link {
+  color: #8be9fd;
+}
+
+.hljs-keyword {
+  color: #ff79c6;
+}
+
+.hljs,
+.hljs-subst {
+  color: #f8f8f2;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-meta-keyword {
+  font-style: italic;
+  color: #50fa7b;
+}
+
+.hljs-string,
+.hljs-meta,
+.hljs-name,
+.hljs-type,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #f1fa8c;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #6272a4;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-title,
+.hljs-section,
+.hljs-doctag,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-literal,
+.hljs-number {
+  color: #bd93f9;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+/* STYLEHERE */
+    </style>
+
+    <!-- Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- Mathjax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Espacos Topologicos</title>
+</head>
+<body>
+
+<h1>1. Espaços Topológicos</h1>
+
+<p>Espaços topológicos são estruturas matemáticas que permitem a formalização dos conceitos de convergência, conexidade e continuidade. 
+Eles aparecem em praticamente todos os ramos da matemática moderna e são uma noção unificadora central.</p>
+
+<p>O ramo da matemática que estuda os espaços topológicos é denominado topologia.</p>
+
+<h2>1.1. Definição</h2>
+
+<p>Uma <strong>topologia</strong> em um conjunto \(X\) é uma coleção \(\tau\) em partes de \(X\), chamados os <strong>abertos</strong> da topologia, com as seguintes propriedades:</p>
+
+<ol>
+
+<li>
+<em>O conjunto vazio e o próprio conjunto \(X\) são abertos.</em> 
+
+    <p>\(\emptyset, X\in \tau\)</p>
+</li>
+
+<li>
+<em>A intersecção de dois conjuntos abertos é um aberto.</em>
+
+    <p>Se \(A_1, A_2 \in \tau\), 
+    então \(A_1\cap A_2 \in \tau\)</p>
+</li>
+
+<li>
+<em>A união de uma família arbitrária de abertos é um aberto.</em>
+
+    <p>Dada uma família arbitrária \((A_\lambda)_{\lambda \in L}\), com \(A_\lambda \in \tau, \forall \lambda \in L\), tem-se \(\left(\bigcup\limits_{\lambda\in L}A_\lambda\right) \in \tau\)</p>
+</li>
+
+</ol>
+
+<p>Um <strong>espaço topológico</strong> é um par \((X, \tau)\) onde \(X\) é um conjunto e \(\tau\) é uma topologia em \(X\).</p>
+
+<h2>1.2. Exemplo</h2>
+
+<p>Dado o conjunto \(X=\{1,2,3\}\), possíveis topologias \(\tau\) são:</p>
+
+<ul>
+
+<li>
+\(\{\emptyset, X\}\)
+</li>
+
+<li>
+\(\{\emptyset, X, \{1\}\}\)
+</li>
+
+<li>
+\(\{\emptyset, X, \{1\}, \{2\}, \{1, 2\}\}\)
+</li>
+
+<li>
+\(\{\emptyset, X, \{2\}, \{1, 2\}, \{2, 3\}\}\)
+</li>
+
+<li>
+\(\wp\{X\}\), conjunto potência (família de todos os subconjuntos de \(X\))
+</li>
+
+</ul>
+
+<p>Exemplos de conjuntos que não formam uma topologia</p>
+
+<ul>
+
+<li>
+\(\{\emptyset, X, \{1, 2\}, \{2, 3\}\}\), viola a propriedade 2, uma vez que a intesecção dos abertos \(\{1, 2\} \cap \{2, 3\}\) não é um aberto (não está em \(\tau\)).
+</li>
+
+<li>
+\(\{\emptyset, X, \{1\}, \{2\}\}\), viola propriedade 3, uma vez que a união dos abertos \(\{1\}\cup \{2\}\) não é um aberto.
+</li>
+
+</ul>
+
+<h1>2. Grupos</h1>
+
+<p>Em matemática, um grupo é um conjunto de elementos associados a uma operação que combina dois elementos quaisquer para formar um terceiro. Para se qualificar como grupo o conjunto e a operação devem satisfazer algumas condições chamadas axiomas de grupo: associatividade, elemento neutro e elementos inversos. Apesar destes serem comuns a muitas estruturas matemáticas familiares - e.g. os números inteiros munidos da adição formam um grupo - a formulação dos axiomas é independente da natureza concreta do grupo e sua operação. Isso permite lidar-se com entidade de origens matemáticas completamente diferentes de uma maneira flexível, mas retendo os aspectos estruturais essenciais de muitos objetos da álgebra abstrata e além. A ubiquidade dos grupos em inúmeras áreas - dentro e fora da matemática - os tornam um princípio organizador central da matemática contemporânea.</p>
+
+<h2>2.1. Definição</h2>
+
+<p>Seja \(G\) um conjunto e \(\ast\) uma <strong>operação binária</strong> definida sobre \(G\). O par ordenado \((G,\ast)\) é um grupo se são satisfeitos os seguintes axiomas:</p>
+
+<p>Sendo \(a, b, c \in G\)</p>
+
+<ul>
+
+<li>
+<strong>Fecho</strong>: \(a\ast b \in G\)
+</li>
+
+<li>
+<strong>Associatividade</strong>: \((a\ast b)\ast c =  a\ast (b\ast c)\)
+</li>
+
+<li>
+<strong>Elemento neutro</strong>: Existe \(1_G \in G\)  tal que \(a\ast 1_G = 1_G\ast a = a\)
+</li>
+
+<li>
+<strong>Elemento simétrico</strong>: Para qualquer elemento \(g\in G\) existe \(g' \in G\)  tal que \(g\ast g' = g'\ast g = 1_G\)
+</li>
+
+</ul>
+
+
+
+<script>
+hljs.highlightAll();
+</script>
+</body>
+</html>

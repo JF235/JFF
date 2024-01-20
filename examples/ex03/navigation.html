@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+body {
+    text-align: justify;
+    margin: 0 auto;
+    width: 70%;
+    font-size: larger;
+    font-family: 'TeX Gyre Schola';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-align: justify;
+}
+
+img {
+    margin: 0 auto;
+    display: block;
+}
+
+video {
+    margin: 0 auto;
+    display: block;
+}
+
+figcaption {
+    text-align: center;
+}
+
+.figurelabel {
+    font-weight: bold;
+}
+
+.videolabel {
+    font-weight: bold;
+}
+
+.reference, .reference:visited {
+    color: #9b4de4;
+    text-decoration: none;
+}
+
+.example_text {
+    font-weight: bold;
+}
+
+.question {
+  border: 2px solid #6D6D6D;
+  padding: 10px;
+  margin: 50px 5px 5px 5px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 2px #8C8C8C44;
+}
+
+.answer {
+    border: 2px solid #4779bc;
+    padding: 10px;
+    margin: 5px 5px 50px 5px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 2px #8c8c8c44;
+}
+
+.answer_title {
+    color: #4779bc;
+}
+
+/* Dracula Theme v1.2.5
+ *
+ * https://github.com/dracula/highlightjs
+ *
+ * Copyright 2016-present, All rights reserved
+ *
+ * Code licensed under the MIT license
+ *
+ * @author Denis Ciccale <dciccale@gmail.com>
+ * @author Zeno Rocha <hi@zenorocha.com>
+ */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #282a36;
+  /*Modificao do JF*/
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+}
+
+.hljs-built_in,
+.hljs-selector-tag,
+.hljs-section,
+.hljs-link {
+  color: #8be9fd;
+}
+
+.hljs-keyword {
+  color: #ff79c6;
+}
+
+.hljs,
+.hljs-subst {
+  color: #f8f8f2;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-meta-keyword {
+  font-style: italic;
+  color: #50fa7b;
+}
+
+.hljs-string,
+.hljs-meta,
+.hljs-name,
+.hljs-type,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #f1fa8c;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #6272a4;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-title,
+.hljs-section,
+.hljs-doctag,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-literal,
+.hljs-number {
+  color: #bd93f9;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+/* STYLEHERE */
+    </style>
+
+    <!-- Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- Mathjax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Navigation</title>
+</head>
+<body>
+
+\(
+    \def\RF{\boldsymbol{\mathcal{F}}}
+    \def\bvec#1{\mathbf{#1}}
+\)
+
+<h1>1. Introduction</h1>
+
+<h2>1.1. Fundamental Concepts</h2>
+
+<p>TODO</p>
+
+<h1>2. Coordinate Frames, Kinematics, and the Earth</h1>
+
+<h2>2.1. Coordinate Frames</h2>
+
+<div class="question">
+
+<p>O que é um <em>cordinate frame</em>? O que são os <em>reference frame</em> e <em>object frame</em>? O que é o <em>resolving frame</em>?</p>
+
+<p><em>Dica: p. 44</em></p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>Para descrever o movimento de um <strong>objeto</strong> é necessário indicar: sua posição, a partir de um ponto chamado origem, e sua orientação, a partir de três eixos ortonormais.</p>
+
+<p>No entanto, essas informações não tem sentido sozinhas. A posição e orientação do objeto devem ser baseadas em uma referência, que também é descirta por uma origem e três eixos.</p>
+
+<p>O conjunto de uma origem e três eixos é chamado de <em>coordinate frame</em>. O <em>object frame</em> está associado ao objeto e o <em>reference frame</em> está associado à referência, como centro da terra, centro do sistema solar ou uma posição terrestre definida.</p>
+
+<p>Dois <em>coordinate frames</em> podem apresentar uma orientação relativa entre si. Para ajustar isso, eu uso um <em>resolving frame</em> para descrever a orientação dos vetores de posição, velocidade, velocidade-angular no espaço.</p>
+
+</div>
+
+
+<div class="question">
+
+<p>Qual o número mínimo de sistemas de coordenadas necessário em um problema de navegação?</p>
+
+<p><em>Dica: p. 24</em></p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>Dois sistemas de coordenada são necessários: um do objeto e um de referência.</p>
+
+</div>
+
+
+<h3>2.1.1. Earth-Centered Inertial Frame</h3>
+
+<div class="question">
+
+<p>O que é o referencial ECI? Por que ele não é estritamente inercial e por que não precisamos nos preocupar com isso?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>O <em>Earth-centered inertial frame</em> é um sistema com origem no centro da terra e com eixo \(z\) orientado na direção do polo norte geográfico. Os eixos \(xy\) estão no plano equatorial, mas não realizam o movimento de rotação com a terra.</p>
+
+<p>Não é um sistema estritamente inercial uma vez que a terra realiza um movimento de revolução em torno do sol, mas esses efeitos podem ser ignorados, uma vez que são menores que o ruído das medidas.</p>
+
+<figure><img src="navigation_imgs\ECI_FRAME.png" style="width: 35%" id="fig-ECI_FRAME"></figure>
+
+</div>
+
+<h3>2.1.2. Earth-Centered Earth-Fixed Frame</h3>
+
+<div class="question">
+
+<p>Quais as diferenças entre o ECEF e o ECI? Quais as semelhanças?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>Em contraste com o ECI, o sistema ECEF tem os eixos acoplados ao movimento de rotação da terra. Com eixo \(z\) e origem iguais, mas com eixo \(x\) indo da origem até o meridiano de Greenwich \(0°\) L e o eixo \(y\) completa o sistem destro.</p>
+
+<figure><img src="navigation_imgs\ECEF_FRAME.png" style="width: 50%" id="fig-ECEF_FRAME"></figure>
+
+</div>
+
+<h3>2.1.3. Local Navigation Frame (NED)</h3>
+
+<div class="question">
+
+<p>Qual a origem e como são orientado os eixos?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>A origem está acoplada a um objeto e os eixos são definidos de forma que \(z\) é a direção <em>Down</em>, aponta para o centro da terra, \(x\) <em>North</em>, é a projeção no plano ortogonal a \(z\) da linha que liga o objeto até o polo norte.</p>
+
+<p>Esse sistema não serve de <em>reference frame</em>.</p>
+
+<figure><img src="navigation_imgs\NED_FRAME.png" style="width: 50%" id="fig-NED_FRAME"></figure>
+
+</div>
+
+<h3>2.1.4. Local Tangent-Plane Frame</h3>
+
+<div class="question">
+
+<p>Como descrever esse sistema?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+ 
+O sistema é descrito em aplicações locais, com um plano tangente a terra.
+
+</div>
+ 
+<h3>2.1.5. Body Frame</h3>
+
+<div class="question">
+
+<p>Qual a diferença entre o <em>body frame</em> e o <em>local navigation frame</em>?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>O <em>body frame</em> é formado pela origem e orientação do objeto descrito. A origem é a mesma do <em>NED (local) frame</em>, mas os eixos estão fixos com relação ao objeto.</p>
+
+<figure><img src="navigation_imgs\BODY_FRAME.png" style="width: 50%" id="fig-BODY_FRAME"></figure>
+
+</div>
+
+<h2>2.2. Attitude, Rotation, and Resolving Axes Transformations</h2>
+
+<div class="question">
+
+<p>O que é <em>attitude</em>?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>Attitude describes the orientation of the axes of one coordinate frame with respect to those of another.</p>
+
+</div>
+
+<div class="question">
+
+<p>Considere dois sistemas de coordenadas, \(\beta\) e \(\gamma\), sendo que o segundo está rotacionado de um ângulo \(+\psi\) do primeiro. Qual a coordenada de um ponto \(\alpha\) com distância \(r\) da origem de \(\beta\) e ângulo \(\phi\) <strong>a)</strong> para o sistema \(\beta\), <strong>b)</strong> para o sistema \(\gamma\) e <strong>c)</strong> qual a expressão que relaciona ambas as coordenadas? (\(\mathbf{x}^{\gamma}_{\beta\alpha} = R\mathbf{x}^\beta_{\beta\alpha}\))</p>
+
+<p><em>Dica: O sentido positivo dos ângulos diz que a rotação acontece no sentido positivo da rotação trigonométrica (anti-horário)</em></p>
+
+<figure><img src="navigation_imgs\rot2d.png" style="width: 50%" id="fig-rot2d"></figure>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>a)
+\[\begin{bmatrix}
+    x_{\beta\alpha}^{\beta} \\
+    y_{\beta\alpha}^{\beta}
+\end{bmatrix} = 
+\begin{bmatrix}
+    r_{\beta\alpha}\cos\phi \\
+    r_{\beta\alpha}\sin\phi
+\end{bmatrix}\]</p>
+
+<p>b)
+\[\begin{bmatrix}
+    x_{\beta\alpha}^{\gamma} \\
+    y_{\beta\alpha}^{\gamma}
+\end{bmatrix} = 
+\begin{bmatrix}
+    r_{\beta\alpha}\cos(\phi - \psi) \\
+    r_{\beta\alpha}\sin(\phi - \psi)
+\end{bmatrix}\]</p>
+
+<p>c)
+\[\begin{bmatrix}
+    x_{\beta\alpha}^{\gamma} \\
+    y_{\beta\alpha}^{\gamma}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \cos\psi && \sin\psi \\
+    -\sin\psi && \cos\psi
+\end{bmatrix}
+\begin{bmatrix}
+    x_{\beta\alpha}^{\beta} \\
+    y_{\beta\alpha}^{\beta}
+\end{bmatrix}
+\]</p>
+
+<p><em>Observação</em> - Quando usamos o sistema \(\gamma\) como <em>resolving frame</em>, não é necessário indicar a origem desse sistema, pois a distância do ponto só é dependente do <em>reference frame</em> \(\beta\).</p>
+
+</div>
+
+<h3>2.2.1. Euler Attitude</h3>
+
+<div class="question">
+
+<p>Vimos como escrever uma relação entre as coordenadas de um ponto para dois sistemas de coordenadas, rotacionados entre si por um ângulo \(\psi\). Considerando dois sistemas em três dimensões, quais seriam as três relações considerando a rotação em torno de cada um dos eixos?</p>
+
+<p><em>Dica: O sentido positivo de rotação para cada um dos eixos é mostrado na figura abaixo.</em></p>
+
+<p><em>Dica 2: Reduza cada caso para uma rotação em 2D, com o eixo fixo orientado de forma a sair da página</em></p>
+
+<figure><img src="navigation_imgs\positive_rotations.png" style="width: 90%" id="fig-positive_rotations"></figure>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<figure><img src="navigation_imgs\solution.png" style="width: 50%" id="fig-solution"></figure>
+
+</div>
+
+<h3>2.2.2. Coordinate Transformation Matrix</h3>
+
+<div class="question">
+
+<p>Como transformar um vetor entre <em>resolving frames</em>?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>Vamos começar definindo o conceito de uma <em>vectrix</em> associado a um sistema de coordenada \(\alpha\) como sendo um vetor, com cada componente sendo um vetor da base do sistema de coordenadas</p>
+
+\[\RF_\alpha = \begin{bmatrix}
+    \bvec{i}_\alpha \\
+    \bvec{j}_\alpha \\
+    \bvec{k}_\alpha \\
+\end{bmatrix}\]
+
+<p>Dessa forma, um vetor \(\bvec{v}\) escrito na base canônica pode ser representado por</p>
+
+\[
+\bvec{v} = v_{x\alpha}\bvec{i}_\alpha+
+v_{y\alpha}\bvec{j}_\alpha+
+v_{z\alpha}\bvec{k}_\alpha =
+\RF_\alpha^T\bvec{v}_\alpha
+\]
+
+<p>para qualquer outra base. O produto escalar envolvendo a entidade <em>vectrix</em>, como \(\RF_\alpha^T\bvec{v}_\alpha\), deve ser interpretada como o produto entre o vetor e cada elemento da <em>vectrix</em>.</p>
+
+<p>Um fato importante de uma base unitária é que o produto entre duas <em>vectrices</em> é</p>
+
+\[\RF_\alpha\RF_\alpha^T = \mathbb{I}\]
+
+<p>Dessa maneira, para duas bases diferentes, temos</p>
+
+\[
+\bvec{v} =
+\RF_\alpha^T\bvec{v}_\alpha =
+\RF_\beta^T\bvec{v}_\beta
+\]
+
+<p>Multiplicando ambos os lados por \(\RF_\beta\)</p>
+
+\[\bvec{v}_\beta = \RF_\beta\RF_\alpha ^T\bvec{v}_\alpha = \mathbf{C}_\alpha^\beta \bvec{v}_\alpha\]
+
+<p>Com a matriz de transformação de \(\alpha\) para \(\beta\) sendo</p>
+
+\[\mathbf{C}_\alpha^\beta 
+= 
+\begin{bmatrix}
+    \bvec{i}_\beta\\
+    \bvec{j}_\beta\\
+    \bvec{k}_\beta
+\end{bmatrix}
+\begin{bmatrix}
+    \bvec{i}_\alpha &
+    \bvec{j}_\alpha &
+    \bvec{k}_\alpha
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \bvec{i}_\beta \cdot \bvec{i}_\alpha & \bvec{i}_\beta \cdot \bvec{j}_\alpha & \bvec{i}_\beta \cdot \bvec{k}_\alpha \\
+    \bvec{j}_\beta \cdot \bvec{i}_\alpha & \bvec{j}_\beta \cdot \bvec{j}_\alpha & \bvec{j}_\beta \cdot \bvec{k}_\alpha \\
+    \bvec{k}_\beta \cdot \bvec{i}_\alpha & \bvec{k}_\beta \cdot \bvec{j}_\alpha & \bvec{k}_\beta \cdot \bvec{k}_\alpha \\
+\end{bmatrix}\]
+
+</div>
+
+<div class="question">
+
+<p>Qual a relação entre as matrizes \((\mathbf{C}_\alpha^\beta)^T\) e \((\mathbf{C}_\alpha^\beta)^{-1}\)?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>Como o processo de inversão de uma matriz representa o retorno ao sistema original, então  \((\mathbf{C}_\alpha^\beta)^{-1} = \mathbf{C}_\beta^\alpha\). Dessa forma</p>
+
+\[(\mathbf{C}_\alpha^\beta)^T = (\RF_\beta \RF_\alpha^T)^T = \RF_\alpha\RF_\beta^T = \mathbf{C}_\beta^\alpha = (\mathbf{C}_\alpha^\beta)^{-1} \]
+
+<p><strong>IMPORTANTE</strong>: Se eu tenho um sistema \(\alpha\) e desejo aplicar uma rotação \(R\) nele para obter um outro sistema \(\beta\), então dado qualquer ponto em \(\alpha\), para obter a coordenada resolvida em \(\beta\) devo aplicar \(R^{-1}\).</p>
+
+<p>Por exemplo, tenho um sistema \(\alpha\) e um ponto a \(+60\) graus. Além disso, gostaria de criar um outro sistema \(\beta\) girando \(+30\) graus. Nesse caso, para obter a coordenada do ponto resolvido em \(\beta\), em função de \(\alpha\), aplico a rotação de \(-30\) graus.</p>
+
+</div>
+
+<div class="question">
+
+<p>Como escrever uma matriz de transformação \(\mathbf{C}_\alpha^\beta\) em termos dos ângulos de Euler?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+ 
+Vimos que para transformar de um sistema \(\beta\) para um sistema \(\alpha\) são necessários 3 valores, os <em>ângulos de Euler</em>
+
+\[\boldsymbol{\Psi}_{\beta\alpha} = \begin{bmatrix}
+    \phi_{\beta\alpha} \\
+    \theta_{\beta\alpha} \\
+    \psi_{\beta\alpha} \\
+\end{bmatrix}\]
+
+<p>Sendo assim, rotacionar de \(\beta\) para \(\alpha\) consiste em aplicar sucessivamente as rotações de \(\psi_{\beta\alpha}\) em torno do eixo \(z\), \(\theta_{\beta\alpha}\) em torno de \(y\) e \(\phi_{\beta\alpha}\) em torno de \(x\).</p>
+
+<figure><img src="navigation_imgs\euler_coord_transf.png" style="width: 90%" id="fig-euler_coord_transf"></figure>
+
+</div>
+
+<div class="question">
+
+<p>Como transformar uma matriz entre <em>resolving frames</em>?</p>
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+ 
+Dada uma matriz \(\mathbf{M}_\alpha\) que transforma um vetor \(\bvec{v}_\alpha\) em um vetor \(\bvec{u}_\alpha\), gostaria de enontrar \(\mathbf{M}_\beta\) que transformasse \(\bvec{v}_\beta\) em \(\bvec{u}_\beta\)
+
+\[\bvec{u}_\alpha = \mathbf{M}_\alpha\bvec{v}_\alpha\]
+
+\[\mathbf{C}_\beta^\alpha\bvec{u}_\beta = \mathbf{M}_\alpha\mathbf{C}_\beta^\alpha\bvec{v}_\beta\]
+
+\[\bvec{u}_\beta = \mathbf{C}_\alpha^\beta\mathbf{M}_\alpha\mathbf{C}_\beta^\alpha\bvec{v}_\beta \Leftrightarrow \mathbf{M}_\beta = \mathbf{C}_\alpha^\beta\mathbf{M}_\alpha\mathbf{C}_\beta^\alpha\]
+
+</div> 
+
+<h3>2.2.3. Quaternion Attitude</h3>
+
+<div class="question">
+ 
+Quais as singularidades em ângulos de Euler?
+
+</div>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<p>A princípio, os ângulos de Euler são impecáveis, uma vez que dados os três ângulos \((\phi, \theta, \psi)\) é possível converter entre dois sistemas arbitrários.</p>
+
+<p>O problema ocorre em interpolações, por exemplo, quando uma determinada rotação intermediária acaba alinhando dois eixos de rotação. Isso é chamado de <strong>Gimbal Lock</strong>.</p>
+
+<p>Vamos demonstrar esses problemas com base em um exemplo, no qual desejo rotacionar a <em>Suzzane</em> em duas etapas.</p>
+
+<ol>
+
+<li>
+Rotacionar -90 graus em torno de \(z\) (global)
+</li>
+
+<li>
+Rotacionar -90 graus em torno de \(x\) (global)
+</li>
+
+</ol>
+
+<p>O resultado esperado é mostrado no vídeo abaixo</p>
+
+<video style="width: 50%" controls><source src="navigation_imgs\rotate-yxz.mp4" id="vid-rotate-yxz"></video><figcaption><span class="videolabel">Vídeo 1 - </span>Rotação adequada sem Gimbal Lock</figcaption>
+
+<p>Na ordem de rotação XZY, ou seja, com matriz de rotação dada por</p>
+
+\[\mathbf{C} = R_x(\phi)R_z(\psi)R_y(\theta)\]
+
+<p>O resultado é dado por</p>
+
+<video style="width: 50%" controls><source src="navigation_imgs\rotate-xyz.mp4" id="vid-rotate-xyz"></video><figcaption><span class="videolabel">Vídeo 2 - </span>Rotação com Gimbal Lock</figcaption>
+
+<p>A diferença entre os resultados aparece por conta da ordem das multiplicações.</p>
+
+<p>Quando \(\psi = -\pi/2\), temos a matriz na forma</p>
+
+\[
+\begin{pmatrix}
+0 & 1 & 0\\
+-\cos \left(\phi +\theta \right) & 0 & -\sin \left(\phi +\theta \right)\\
+-\sin \left(\phi +\theta \right) & 0 & \cos \left(\phi +\theta \right)
+\end{pmatrix}
+\]
+
+<p>Indicando que as rotações em torno de \(x\) e \(y\) são redundantes (causam o mesmo efeito). Dizemos então que um dos graus de liberdade de rotação foi perdido.</p>
+
+<p>Mais especificamente, o grau de rotação perdido é justamente aquele associado a rotação em torno do \(x\) global. Dessa forma, não há mais como atingir o objetivo.</p>
+
+<p>Para recuperar um dos graus de liberdade, o software <em>Blender</em> precisa desfazer parte da primeira rotação, desbloqueando a trava com relação a segunda rotação em torno de \(x\) global, resultando no movimento estranho.</p>
+
+<p>Podemos ver isso nas figuras abaixo</p>
+
+<figure><img src="navigation_imgs\interp-error.png" style="width: 50%" id="fig-interp-error"></figure>
+<figure><img src="navigation_imgs\interp-certo.png" style="width: 50%" id="fig-interp-certo"></figure>
+
+
+</div>
+
+<div class="question">
+
+<p>Qual a representação de um quaternion e quais os graus de liberdade?</p>
+
+</div>
+
+<h3>2.2.4. Rotation Vector</h3>
+
+<p>TODO</p>
+
+<h2>2.3. Kinematics</h2>
+
+<div class="question">
+
+<p>Quais os três frames envolvidos nas representações cinemáticas?</p>
+
+</div>
+
+<h3>2.3.1. Angular rate</h3>
+
+<div class="question">
+
+<p>Deduza a equação para a derivada temporal da matriz de transformação de coordenadas, isto é, \(\dot{\mathbf{C}}_\beta^\alpha\)</p>
+
+</div>
+
+
+
+<script>
+hljs.highlightAll();
+</script>
+</body>
+</html>

@@ -1,18 +1,15 @@
 from sys import argv
 from pathlib import Path
-from rules import RULES
-from counter import resolve_numbering
-from default_metadata import get_default_metadata
-from code_support import apply_code, resolve_code
 import re
 import os
 
-# TODO: Não permitir que código seja executado lá dentro
-import counter_rule
-import question_rule
+from counter import resolve_numbering
+from default_metadata import get_default_metadata
+from default_rules.code import apply_code, resolve_code
+from rules import RULES
 
 CWD = os.getcwd()
-APPDIR = os.path.realpath(os.path.dirname(__file__)) + '\\..'
+APPDIR = os.path.realpath(os.path.dirname(__file__)) + "\\.."
 
 
 def read_metadata(string: str) -> tuple[dict[str, str], str]:
@@ -31,12 +28,12 @@ def read_metadata(string: str) -> tuple[dict[str, str], str]:
     if match:
         # Lê cada linha no formato NOME: VALOR
         metadata_str = match.group(1)
-        metadata_arguments = metadata_str.split('\n')
+        metadata_arguments = metadata_str.split("\n")
         for line in metadata_arguments:
-            arg_name, arg_option_str = tuple(line.split(':'))
+            arg_name, arg_option_str = tuple(line.split(":"))
             arg_option = arg_option_str.strip()
-            if arg_name == 'COUNTERS':
-                metadata[arg_name] += f', {arg_option}'
+            if arg_name == "COUNTERS":
+                metadata[arg_name] += f", {arg_option}"
             else:
                 metadata[arg_name] = arg_option
         # Remove os metadados do arquivo
@@ -49,7 +46,7 @@ def md2html(buffer: str, metadata: dict) -> str:
     new_string = buffer
 
     new_string = apply_code(new_string, metadata)
-    
+
     for r in RULES:
         new_string = r.apply(new_string, metadata)
 
@@ -60,14 +57,23 @@ def md2html(buffer: str, metadata: dict) -> str:
 
 
 def set_style(stylesheet: str, string: str) -> str:
-    pattern = re.compile("STYLEHERE")
-    string = pattern.sub(stylesheet, string)
+    match = re.search("/[*] STYLEHERE [*]/", string)
+    if match:
+        style = ""
+        with open(stylesheet) as file:
+            style = file.read()
+        string = (
+            string[: match.start()]
+            + style
+            + "\n/* STYLEHERE */"
+            + string[match.end() :]
+        )
     return string
 
 
 def set_docname(filename: str, string: str) -> str:
     pattern = re.compile("DOCNAME")
-    docname = Path(filename).stem.replace('_', ' ').title()
+    docname = Path(filename).stem.replace("_", " ").title()
     string = pattern.sub(docname, string)
     return string
 
@@ -78,6 +84,10 @@ def main():
     except IndexError:
         print(f"Uso: {argv[0]} <filename>")
         return
+
+    if filename == "DEBUGMODE":
+        # No modo de debug eu consigo editar o conteúdo da variável filename
+        filename = ""
 
     with open(filename, mode="r", encoding="utf8") as file:
         string = file.read()
@@ -99,11 +109,13 @@ def main():
 
     # Informações adicionais
     # TODO: Adicionar isso nos metadados
-    htmlFile = set_style("style.css", htmlFile)
+    htmlFile = set_style(APPDIR + "\\assets\\style.css", htmlFile)
+    # Adicionar informação do estilo de código
+    htmlFile = set_style(APPDIR + "\\assets\\dracula.css", htmlFile)
     htmlFile = set_docname(filename, htmlFile)
 
     filename_wo_ext = os.path.splitext(filename)[0]
-    with open(f"{filename_wo_ext}.html", mode="w", encoding="utf8") as file:
+    with open(f"{filename_wo_ext}_new.html", mode="w", encoding="utf8") as file:
         file.write(htmlFile)
 
 

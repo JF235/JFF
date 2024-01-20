@@ -1,5 +1,6 @@
 import re
 
+
 COUNTER_DICT: dict[str, int] = {}
 REFERENCE_DICT: dict[str, int] = {}
 
@@ -20,7 +21,7 @@ def resolve_numbering(string: str, metadata: dict) -> str:
     Returns:
         str: String final após resolução dos contadores
     """
-    for counter_name in metadata["COUNTERS"].split(','):
+    for counter_name in metadata["COUNTERS"].split(","):
         # Inicia os contadores
         counter_name = counter_name.strip()
         COUNTER_DICT[counter_name] = 0
