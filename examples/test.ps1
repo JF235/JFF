@@ -6,7 +6,7 @@ foreach ($folder in $folders) {
     Set-Location $folder.FullName
 
     # Executa o comando jff
-    # jff
+    jff
 
     # Obtém o nome do arquivo .md na pasta
     $mdFile = Get-ChildItem -Filter '*.md' | Select-Object -First 1

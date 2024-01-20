@@ -1,10 +1,10 @@
 from rule import Rule
-from jff_globals import REFERENCE_DICT
+from jff_globals import LABEL_DICT, METADATA
 
-def reference_formattig(self: Rule, metadata: dict[str, str], match) -> str:
+def reference_formattig(self: Rule, match) -> str:
     label = match.group(1)
-    _, reference_name = REFERENCE_DICT[label]
-    ref_format = metadata[reference_name + '_REF'].strip("'")
+    reference_name = LABEL_DICT[label]
+    ref_format = METADATA[reference_name + '_REF'].strip("'")
     replace = r'<a href="#\1" class="reference">' + ref_format + '</a>'
     replace = match.expand(replace)
     return replace

@@ -1,60 +1,61 @@
 from rule import Rule
+from jff_globals import METADATA
 import re
 import os
 
+METADATA["COUNTERS"] += ", FIG"
+METADATA.update(
+    {
+        "FIG_FORMAT": "'Figure COUNTER(FIG,=) - '",
+        "FIG_REF": r"'Fig.&nbsp;COUNTER(FIG,=,\1)'",
+        "FIG_STYLE": "width: 50%",
+    }
+)
 
-def figure_formatting(self: Rule, metadata: dict[str, str], match) -> str:
-    replace = self.repl
+
+def figure_formatting(self: Rule, match) -> str:
     figure_string = match.group(0)
+    # TODO: Adicionar suporte para múltiplos caminhos
+    figpath = METADATA["MEDIA_PATH"]
 
-    # Obter caminho/nome da figura
-    figname_match = re.search(r' src="(.+?)"', figure_string)
-    if figname_match:
-        figpath = metadata["MEDIAPATH"]
-        figname, figext = os.path.splitext(figname_match.group(1))
-        full_figname = figname + figext
+    figname = match.group(1)
+    name, ext = os.path.splitext(figname)
 
-        for arquivo in os.listdir(figpath):
-            if figext and os.path.splitext(arquivo) == (figname, figext):
-                full_figname = os.path.join(figpath, arquivo)
-                break
-            elif figext == "" and os.path.splitext(arquivo)[0] == figname:
-                full_figname = os.path.join(figpath, arquivo)
-                break
+    full_figname = os.path.join(figpath, figname)
 
-        m = re.search("FIGNAME", replace)
-        if m:
-            replace = replace[: m.start()] + full_figname + replace[m.end() :]
-    else:
-        raise (FileNotFoundError)
+    if ext == "":
+        arquivo = next(
+            arquivo
+            for arquivo in os.listdir(figpath)
+            if os.path.splitext(arquivo)[0] == name
+        )
+        full_figname = os.path.join(figpath, arquivo)
 
     # Trantando o estilo
-    figstyle_match = re.search(r' size="(.+?)"', figure_string)
+    figstyle_match = re.search(r' style="(.+?)"', figure_string)
     figstyle = (
-        f' style="{figstyle_match.group(1)}"'
+        f'style="{figstyle_match.group(1)}"'
         if figstyle_match
-        else f' style="{metadata['FIGSTYLE']}"'
+        else f'style="{METADATA['FIG_STYLE']}"'
     )
-    replace = re.sub(" FIGSTYLE", figstyle, replace)
 
     # Tratando a legenda
     figcaption_match = re.search(r' caption="(.+?)"', figure_string)
     full_figcaption = ""
     if figcaption_match:
         figcaption = figcaption_match.group(1)
-        figformat = metadata["FIG_FORMAT"].strip("'")
+        figformat = METADATA["FIG_FORMAT"].strip("'")
         full_figcaption = f'<figcaption><span class="figurelabel">{figformat}</span>{figcaption}</figcaption>'
-    replace = re.sub("FIG_CAPTION", full_figcaption, replace)
 
     # Tratando o label
     figlabel_match = re.search(r' label="(.+?)"', figure_string)
     figlabel = figlabel_match.group(1) if figlabel_match else figname
-    replace = re.sub("FIGLABEL", figlabel, replace)
+
+    replace = f'<figure COUNTER(FIG,+,{figlabel})><img src="{full_figname}" {figstyle} id="{figlabel}">{full_figcaption}</figure>'
 
     return replace
 
 
 _figure_params = r'(?: (.+?)="(.+?)")*'
 _figure = r'<fig(?:ure)? src="(.+?)"' + _figure_params + r">"
-_figure_repl = r'<figure COUNTER(FIG,+,FIGLABEL)><img src="FIGNAME" FIGSTYLE id="FIGLABEL">FIG_CAPTION</figure>'
-FIGURE = Rule("Figure", _figure, _figure_repl, formatting=figure_formatting)
+FIGURE = Rule("Figure", _figure, "", formatting=figure_formatting)

@@ -171,10 +171,13 @@ figcaption {
 </head>
 <body>
 
+
+<div style="display: none">
 \(
     \def\RF{\boldsymbol{\mathcal{F}}}
     \def\bvec#1{\mathbf{#1}}
 \)
+</div>
 
 <h1>1. Introduction</h1>
 
@@ -239,7 +242,7 @@ figcaption {
 
 <p> Não é um sistema estritamente inercial uma vez que a terra realiza um movimento de revolução em torno do sol, mas esses efeitos podem ser ignorados, uma vez que são menores que o ruído das medidas. </p>
 
-<figure><img src="navigation_imgs\ECI_FRAME.png" style="width: 35%" id="fig-ECI_FRAME"></figure>
+<figure><img src="navigation_imgs\ECI_FRAME.png" style="width: 35%" id="ECI_FRAME"></figure>
 
 </div>
 
@@ -256,7 +259,7 @@ figcaption {
 
 <p> Em contraste com o ECI, o sistema ECEF tem os eixos acoplados ao movimento de rotação da terra. Com eixo \(z\) e origem iguais, mas com eixo \(x\) indo da origem até o meridiano de Greenwich \(0°\) L e o eixo \(y\) completa o sistem destro. </p>
 
-<figure><img src="navigation_imgs\ECEF_FRAME.png" style="width: 50%" id="fig-ECEF_FRAME"></figure>
+<figure><img src="navigation_imgs\ECEF_FRAME.png" style="width: 50%" id="ECEF_FRAME"></figure>
 
 </div>
 
@@ -275,7 +278,7 @@ figcaption {
 
 <p> Esse sistema não serve de <em>reference frame</em>. </p>
 
-<figure><img src="navigation_imgs\NED_FRAME.png" style="width: 50%" id="fig-NED_FRAME"></figure>
+<figure><img src="navigation_imgs\NED_FRAME.png" style="width: 50%" id="NED_FRAME"></figure>
 
 </div>
 
@@ -307,7 +310,7 @@ O sistema é descrito em aplicações locais, com um plano tangente a terra.
 
 <p> O <em>body frame</em> é formado pela origem e orientação do objeto descrito. A origem é a mesma do <em>NED (local) frame</em>, mas os eixos estão fixos com relação ao objeto. </p>
 
-<figure><img src="navigation_imgs\BODY_FRAME.png" style="width: 50%" id="fig-BODY_FRAME"></figure>
+<figure><img src="navigation_imgs\BODY_FRAME.png" style="width: 50%" id="BODY_FRAME"></figure>
 
 </div>
 
@@ -332,7 +335,7 @@ O sistema é descrito em aplicações locais, com um plano tangente a terra.
 
 <p> <em>Dica: O sentido positivo dos ângulos diz que a rotação acontece no sentido positivo da rotação trigonométrica (anti-horário)</em> </p>
 
-<figure><img src="navigation_imgs\rot2d.png" style="width: 50%" id="fig-rot2d"></figure>
+<figure><img src="navigation_imgs\rot2d.png" style="width: 50%" id="rot2d"></figure>
 
 </div>
 
@@ -389,14 +392,14 @@ O sistema é descrito em aplicações locais, com um plano tangente a terra.
 
 <p> <em>Dica 2: Reduza cada caso para uma rotação em 2D, com o eixo fixo orientado de forma a sair da página</em> </p>
 
-<figure><img src="navigation_imgs\positive_rotations.png" style="width: 90%" id="fig-positive_rotations"></figure>
+<figure><img src="navigation_imgs\positive_rotations.png" style="width: 90%" id="positive_rotations"></figure>
 
 </div>
 
 <div class="answer">
 <div class="answer_title">Resposta</div>
 
-<figure><img src="navigation_imgs\solution.png" style="width: 50%" id="fig-solution"></figure>
+<figure><img src="navigation_imgs\solution.png" style="width: 50%" id="solution"></figure>
 
 </div>
 
@@ -507,7 +510,7 @@ Vimos que para transformar de um sistema \(\beta\) para um sistema \(\alpha\) s�
 
 <p> Sendo assim, rotacionar de \(\beta\) para \(\alpha\) consiste em aplicar sucessivamente as rotações de \(\psi_{\beta\alpha}\) em torno do eixo \(z\), \(\theta_{\beta\alpha}\) em torno de \(y\) e \(\phi_{\beta\alpha}\) em torno de \(x\). </p>
 
-<figure><img src="navigation_imgs\euler_coord_transf.png" style="width: 90%" id="fig-euler_coord_transf"></figure>
+<figure><img src="navigation_imgs\euler_coord_transf.png" style="width: 90%" id="euler_coord_transf"></figure>
 
 </div>
 
@@ -559,17 +562,17 @@ Rotacionar -90 graus em torno de \(x\) (global)
 
 </ol>
 
-<p> O resultado esperado é mostrado no vídeo abaixo </p>
+<p> O resultado esperado é mostrado no vídeo <a href="#vid-rotate-yxz" class="reference">Vídeo&nbsp;1</a>, usando quaternions que não sofrem com Gimbal Lock </p>
 
-<video style="width: 50%" controls><source src="navigation_imgs\rotate-yxz.mp4" id="vid-rotate-yxz"></video><figcaption><span class="videolabel">Vídeo 1 - </span>Rotação adequada sem Gimbal Lock</figcaption>
+<video style="width: 50%" id="vid-rotate-yxz" controls><source src="navigation_imgs\rotate-yxz.mp4"></video><figcaption><span class="videolabel">Vídeo 1 - </span>Rotação adequada sem Gimbal Lock</figcaption>
 
 <p> Na ordem de rotação XZY, ou seja, com matriz de rotação dada por </p>
 
 \[\mathbf{C} = R_x(\phi)R_z(\psi)R_y(\theta)\]
 
-<p> O resultado é dado por </p>
+<p> O resultado é mostrado no <a href="#vid-rotate-xyz" class="reference">Vídeo&nbsp;2</a> </p>
 
-<video style="width: 50%" controls><source src="navigation_imgs\rotate-xyz.mp4" id="vid-rotate-xyz"></video><figcaption><span class="videolabel">Vídeo 2 - </span>Rotação com Gimbal Lock</figcaption>
+<video style="width: 50%" id="vid-rotate-xyz" controls><source src="navigation_imgs\rotate-xyz.mp4"></video><figcaption><span class="videolabel">Vídeo 2 - </span>Rotação com Gimbal Lock</figcaption>
 
 <p> A diferença entre os resultados aparece por conta da ordem das multiplicações. </p>
 
@@ -591,8 +594,8 @@ Rotacionar -90 graus em torno de \(x\) (global)
 
 <p> Podemos ver isso nas figuras abaixo </p>
 
-<figure><img src="navigation_imgs\interp-error.png" style="width: 50%" id="fig-interp-error"></figure>
-<figure><img src="navigation_imgs\interp-certo.png" style="width: 50%" id="fig-interp-certo"></figure>
+<figure><img src="navigation_imgs\interp-error.png" style="width: 50%" id="interp-error"></figure>
+<figure><img src="navigation_imgs\interp-certo.png" style="width: 50%" id="interp-certo"></figure>
 
 
 </div>

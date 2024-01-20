@@ -2,7 +2,7 @@ from rule import Rule
 import re
 
 
-def list_formatting(self: Rule, metadata: dict[str, str], match) -> str:
+def list_formatting(self: Rule, match) -> str:
     """
     Ajustar quebra de linhas
     """
@@ -13,7 +13,7 @@ def list_formatting(self: Rule, metadata: dict[str, str], match) -> str:
     return replace
 
 
-def item_formatting(self: Rule, metadata: dict[str, str], match) -> str:
+def item_formatting(self: Rule, match) -> str:
     replace = match.expand(self.repl)
     match = re.search(r"(<li>)(.+?)(</li>)", replace, re.DOTALL)
     if match:

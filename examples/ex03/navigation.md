@@ -1,12 +1,15 @@
 METADATA
 ---
-MEDIAPATH: navigation_imgs
+MEDIA_PATH: navigation_imgs
 ---
 
+
+<div style="display: none">
 \(
     \def\RF{\boldsymbol{\mathcal{F}}}
     \def\bvec#1{\mathbf{#1}}
 \)
+</div>
 
 # Introduction
 
@@ -57,7 +60,7 @@ O *Earth-centered inertial frame* é um sistema com origem no centro da terra e 
 
 Não é um sistema estritamente inercial uma vez que a terra realiza um movimento de revolução em torno do sol, mas esses efeitos podem ser ignorados, uma vez que são menores que o ruído das medidas. 
 
-<figure src="ECI_FRAME" size="width: 35%">
+<figure src="ECI_FRAME" style="width: 35%">
 </answer>
 
 ### Earth-Centered Earth-Fixed Frame
@@ -175,7 +178,7 @@ Vimos como escrever uma relação entre as coordenadas de um ponto para dois sis
 
 *Dica 2: Reduza cada caso para uma rotação em 2D, com o eixo fixo orientado de forma a sair da página*
 
-<fig src="positive_rotations" size="width: 90%">
+<fig src="positive_rotations" style="width: 90%">
 </question>
 
 <answer>
@@ -275,7 +278,7 @@ $$\boldsymbol{\Psi}_{\beta\alpha} = \begin{bmatrix}
 
 Sendo assim, rotacionar de $\beta$ para $\alpha$ consiste em aplicar sucessivamente as rotações de $\psi_{\beta\alpha}$ em torno do eixo $z$, $\theta_{\beta\alpha}$ em torno de $y$ e $\phi_{\beta\alpha}$ em torno de $x$.
 
-<fig src="euler_coord_transf" size="width: 90%">
+<fig src="euler_coord_transf" style="width: 90%">
 </answer>
 
 <question>
@@ -308,17 +311,17 @@ Vamos demonstrar esses problemas com base em um exemplo, no qual desejo rotacion
 1. Rotacionar -90 graus em torno de $z$ (global)
 2. Rotacionar -90 graus em torno de $x$ (global)
 
-O resultado esperado é mostrado no vídeo abaixo
+O resultado esperado é mostrado no vídeo <a label="vid-rotate-yxz">, usando quaternions que não sofrem com Gimbal Lock
 
-<vid src="rotate-yxz" caption="Rotação adequada sem Gimbal Lock">
+<vid src="rotate-yxz" caption="Rotação adequada sem Gimbal Lock" label="vid-rotate-yxz">
 
 Na ordem de rotação XZY, ou seja, com matriz de rotação dada por
 
 $$\mathbf{C} = R_x(\phi)R_z(\psi)R_y(\theta)$$
 
-O resultado é dado por
+O resultado é mostrado no <a label="vid-rotate-xyz">
 
-<vid src="rotate-xyz" caption="Rotação com Gimbal Lock">
+<vid src="rotate-xyz" caption="Rotação com Gimbal Lock" label="vid-rotate-xyz">
 
 A diferença entre os resultados aparece por conta da ordem das multiplicações.
 

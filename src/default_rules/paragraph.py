@@ -2,7 +2,7 @@ from rule import Rule
 import re
 
 
-def paragraph_formatting(self: Rule, metadata: dict[str, str], match) -> str:
+def paragraph_formatting(self: Rule, match) -> str:
     """
     Ajustar identação, remover espaços em branco e adicionar uma quebra no final.
     """

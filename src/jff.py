@@ -4,24 +4,20 @@ import re
 import os
 
 from counter import resolve_numbering
-from default_metadata import get_default_metadata
+from jff_globals import METADATA, APPDIR
 from default_rules.code import apply_code, resolve_code
 from rules import RULES
 
-CWD = os.getcwd()
-APPDIR = os.path.realpath(os.path.dirname(__file__)) + "\\.."
 
-
-def read_metadata(string: str) -> tuple[dict[str, str], str]:
-    """Define os metadados baseados nos valores padrões definidos no arquivo `get_dafault_metadata()` e nos valores declarados no arquivo (que tem maior precedência).
+def read_metadata(string: str) -> str:
+    """Define os metadados baseados nos valores padrões definidos no arquivo `get_default_metadata()` e nos valores declarados no arquivo (que tem maior precedência).
 
     Args:
         string (str): conteúdo do arquivo
 
     Returns:
-        tuple[dict[str, str], str]: Dicionário de metadados e string do arquivo sem os metadados
+        str: String do arquivo sem os metadados
     """
-    metadata = get_default_metadata()
     pattern = re.compile(r"METADATA\n---\n(.+?)\n---\n\n", re.DOTALL)
     match = pattern.search(string)
 
@@ -33,24 +29,24 @@ def read_metadata(string: str) -> tuple[dict[str, str], str]:
             arg_name, arg_option_str = tuple(line.split(":"))
             arg_option = arg_option_str.strip()
             if arg_name == "COUNTERS":
-                metadata[arg_name] += f", {arg_option}"
+                METADATA[arg_name] += f", {arg_option}"
             else:
-                metadata[arg_name] = arg_option
+                METADATA[arg_name] = arg_option
         # Remove os metadados do arquivo
         string = string[: match.start()] + string[match.end() :]
 
-    return metadata, string
+    return string
 
 
-def md2html(buffer: str, metadata: dict) -> str:
+def md2html(buffer: str) -> str:
     new_string = buffer
 
-    new_string = apply_code(new_string, metadata)
+    new_string = apply_code(new_string)
 
     for r in RULES:
-        new_string = r.apply(new_string, metadata)
+        new_string = r.apply(new_string)
 
-    new_string = resolve_numbering(new_string, metadata)
+    new_string = resolve_numbering(new_string)
     new_string = resolve_code(new_string)
 
     return new_string
@@ -87,16 +83,16 @@ def main():
 
     if filename == "DEBUGMODE":
         # No modo de debug eu consigo editar o conteúdo da variável filename
-        filename = ""
+        filename = "examples/ex04/eq_numbering.md"
 
     with open(filename, mode="r", encoding="utf8") as file:
         string = file.read()
         # Para garantir que as regras funcionem de forma apropriada...
         string += "\n\n"
 
-    metadata, string = read_metadata(string)
+    string = read_metadata(string)
 
-    htmlString = md2html(string, metadata)
+    htmlString = md2html(string)
 
     # Arquivo base, contendo `head` e `body`
     with open(APPDIR + "\\assets\\base.html", mode="r", encoding="utf8") as file:

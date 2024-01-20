@@ -1,13 +1,12 @@
 import re
 
-
 def rawString(string: str) -> str:
     return repr(string)[1:-1]
 
 
 # TODO: Talvez eu não precise disso se eu fizer o meu próprio expand
 # Pois estava tendo problemas com o uso de .expand em strings com caracteres escapados
-def default_formatting(self, metadata, match):
+def default_formatting(self, match):
     replace = match.expand(self.repl)
     return replace
 
@@ -29,7 +28,7 @@ class Rule:
     def __repr__(self):
         return f"Rule({self.name}, {self.get_pattern_string()})"
 
-    def apply(self, string: str, metadata: dict) -> str:
+    def apply(self, string: str) -> str:
         """Aplica a regra na `string`, consistindo em:
         - Encontrar o padrão com `self.pattern`
         - Executar a função `pre_func`
@@ -47,7 +46,7 @@ class Rule:
             pos, endpos = match.span()
 
             # Formata a string que será substituída no lugar do match
-            replace = self.formatting(self, metadata, match)
+            replace = self.formatting(self, match)
             new_string = new_string[:pos] + replace + new_string[endpos:]
 
             match = self.pattern.search(new_string, pos + len(replace))

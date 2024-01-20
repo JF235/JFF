@@ -1,8 +1,18 @@
 from rule import Rule
+from jff_globals import METADATA
 import re
 
+METADATA["COUNTERS"] += ", H1, H2, H3"
+METADATA.update(
+    {
+        "H1_FORMAT": "'COUNTER(H1,=). '",
+        "H2_FORMAT": "'COUNTER(H1,=).COUNTER(H2,=). '",
+        "H3_FORMAT": "'COUNTER(H1,=).COUNTER(H2,=).COUNTER(H3,=). '",
+    }
+)
 
-def header_formattig(self: Rule, metadata: dict[str, str], match) -> str:
+
+def header_formattig(self: Rule, match) -> str:
     """
     Substituir HN_FORMAT pelo formato especificado nos metadados.
     """
@@ -10,7 +20,7 @@ def header_formattig(self: Rule, metadata: dict[str, str], match) -> str:
     pattern = re.compile("H._FORMAT")
     hformat_match = pattern.search(self.repl)
     if hformat_match:
-        header_format = metadata[hformat_match.group(0)].strip("'")
+        header_format = METADATA[hformat_match.group(0)].strip("'")
         replace = (
             replace[: hformat_match.start()]
             + header_format

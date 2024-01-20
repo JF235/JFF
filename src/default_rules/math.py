@@ -1,5 +1,15 @@
 from rule import Rule
+from jff_globals import METADATA
 import re
+
+METADATA["COUNTERS"] += ", EQ"
+METADATA.update(
+    {
+        "EQ_FORMAT": r"'COUNTER(EQ,=)'",
+        "EQ_REF": r"'Eq.&nbsp;COUNTER(EQ,=,\1)'",
+    }
+)
+
 
 _empty_space = r"(?<=[ ]|\n)"
 DISPLAY_MATH = Rule(
@@ -8,22 +18,22 @@ DISPLAY_MATH = Rule(
 INLINE_MATH = Rule("Inline Math", _empty_space + r"\$(.+?)\$", r"\(\1\)")
 
 
-def numbered_math_formatting(self: Rule, metadata: dict[str, str], match) -> str:
+def numbered_math_formatting(self: Rule, match) -> str:
     if match.group(2):
         replace = (
             f'<div COUNTER(EQ,+,{match.group(2)}) id="{match.group(2)}">'
             + "\n"
             + r"\\[\n\1\n\\tag{"
-            + metadata["EQ_FORMAT"].strip("'")
+            + METADATA["EQ_FORMAT"].strip("'")
             + r"}\\]\n"
             + "</div>"
         )
     else:
         replace = (
-            '<div COUNTER(EQ,+)>'
+            "<div COUNTER(EQ,+)>"
             + "\n"
             + r"\\[\n\1\n\\tag{"
-            + metadata["EQ_FORMAT"].strip("'")
+            + METADATA["EQ_FORMAT"].strip("'")
             + r"}\\]\n"
             + "</div>"
         )

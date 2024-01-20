@@ -1,29 +1,44 @@
+METADATA
+---
+FIG_FORMAT: 'Figura COUNTER(FIG,=) - '
+---
+
+
+# Teste
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem dui, tempus eget volutpat ut, mattis at justo. Nulla commodo magna vitae diam egestas, at tempus erat lacinia. Phasellus at blandit elit, non eleifend erat. Vivamus venenatis, tellus quis sollicitudin molestie, massa ante euismod risus, at mollis orci sem a sem. Maecenas fringilla congue fringilla. Ut tortor urna, tempor in nibh vitae, luctus ullamcorper urna. <a label="w-fergie"> Proin iaculis risus sed ante facilisis molestie. Fusce dictum vitae neque et pharetra.
 
 ```python
 def foo():
     return 1*1*1
 ```
 
-**Other code**, referencing <a href="#eq-numA" class="reference">(A)</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum massa mauris, bibendum sit amet accumsan a, lacinia ac erat. Sed nec elementum ipsum, sed convallis felis. Vestibulum ante ipsum primis in faucibus **orci luctus** et ultrices posuere cubilia curae; Aliquam eget lectus at nisi imperdiet finibus. Donec consequat augue sit amet viverra fermentum. Vestibulum volutpat tortor sed felis pharetra, nec bibendum metus porttitor. Suspendisse ex dui, maximus at posuere et, faucibus sit amet massa. Sed congue aliquet justo, quis aliquet turpis maximus cursus. Proin tincidunt bibendum odio, nec pellentesque nunc ultricies ut. Quisque faucibus imperdiet magna at aliquam. Morbi vel fringilla elit. Donec quis sodales massa. \**Proin** blandit ex nec facilisis tristique. Vivamus eu dictum lorem. Quisque ultricies nisi sit amet fringilla porta.
+Suspendisse potenti. Etiam nec orci non lacus dictum tempor quis eu mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum magna libero, tempus eu quam pulvinar, luctus mattis mi. Vivamus in justo molestie ipsum facilisis cursus vitae sit amet ante. Mauris sollicitudin nibh et mattis pretium.
 
-\[E=\text{P.E.} + \text{K.E.}\]
+<fig src="https://cdn.britannica.com/82/149182-050-574AF9C2/Black-Eyed-Peas-Fergie-Taboo-ap.jpg" caption="Os caras" label="w-fergie">
 
-Curabitur sagittis cursus ante et suscipit. Cras lacinia ipsum magna, ac ultrices erat lobortis eu. In at diam ut erat sodales volutpat nec a sem. Integer rhoncus nulla in eros molestie, eu blandit orci volutpat. Nunc elementum, nibh a dictum porttitor, massa eros iaculis odio, nec faucibus libero sapien sit amet elit. Nullam in faucibus tortor. Donec auctor tempor luctus. Aliquam consequat mollis pellentesque. Maecenas sodales est ac ex hendrerit, fringilla feugiat libero auctor. Phasellus ac posuere ipsum. Proin varius neque lectus, in semper ligula dignissim et.
+Proin eros massa, euismod a nunc aliquam, <a label="forca_gravidade"> consequat bibendum metus. Maecenas dictum turpis a vulputate tincidunt. Sed sodales leo ut viverra semper. Aliquam erat volutpat. Etiam ac felis aliquet, cursus est at, vehicula augue. Aliquam commodo diam et arcu molestie iaculis. Etiam ornare nisl orci, pulvinar mattis arcu convallis vitae. Aenean porttitor, lacus ac lacinia semper, augue libero elementum elit, vitae accumsan mi ex id velit. 
 
-```python
-def foo():
-    return 1*2*1
+\[E = mc^2\]\label{emc2}
+
+Morbi luctus, augue quis fringilla hendrerit, massa dui scelerisque ligula, non condimentum justo tortor vitae odio. Nunc pharetra tincidunt justo, quis eleifend arcu volutpat eget. Aliquam feugiat dui nisi, sit amet placerat ex facilisis et. Vestibulum viverra mattis ex quis molestie.
+
+# Mais teste
+
+Integer tincidunt sapien orci, nec ultricies justo porttitor sit amet. Phasellus id congue dolor. Ut at turpis et nunc cursus lacinia eu vitae libero. Duis at facilisis arcu. Aliquam erat volutpat. Cras non turpis nisi. Mauris feugiat lectus vel vehicula malesuada <a label="wo-fergie">. Proin malesuada pretium gravida. Donec ac molestie ligula, non volutpat libero.
+
+```c++
+#include <stdio.h>
+
+int main(void){
+    printf("Hello, World!\n");
+}
 ```
 
-Fusce sed nunc fringilla, egestas mauris at, tempus erat. Suspendisse lobortis suscipit orci, id ullamcorper nisi. In blandit neque id nibh aliquet ultricies. Maecenas euismod placerat nulla, eget tincidunt dui aliquet sed. Vivamus congue ullamcorper velit, eu faucibus dui rutrum in. Mauris quis vulputate magna. Duis et faucibus velit. Sed a auctor urna. Nulla a metus vehicula, vulputate metus eu, condimentum diam. Cras viverra lorem non orci dignissim lobortis. Curabitur erat sem, lacinia sed finibus vel, pellentesque at orci.
+Pellentesque eu consequat diam, eget bibendum leo. Nam tristique, turpis eu vestibulum tempus, nunc ex laoreet urna, efficitur sodales neque magna non elit. Sed porta, felis vel tincidunt auctor, enim velit vehicula est, vel aliquam ligula diam quis nunc. Integer id felis felis. Integer ullamcorper luctus iaculis. Integer vulputate faucibus risus vitae blandit. Suspendisse vestibulum dignissim orci, et tempor est placerat eget. Nulla hendrerit accumsan laoreet. Nullam finibus imperdiet orci in molestie. Proin dapibus tortor ut ipsum fermentum, et ultrices sapien hendrerit. Proin eget ex sem.
 
-\[E=\frac{1}{2}mv^2\]
+<fig src="https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2018/11/black-eyed-peas-masters-sun-vol-1.jpeg" caption="Cade a fergie" label="wo-fergie">
 
-Outro tes$$te$$
+Phasellus elementum lacus metus, id convallis sapien pretium nec. Donec at urna nisi. Curabitur congue aliquam dapibus. Nulla ac eros dolor. Duis tempor lectus lacinia lectus semper blandit. Pellentesque aliquam blandit lorem, ac pretium odio fringilla bibendum. Cras efficitur diam vel dolor fringilla, ut imperdiet libero rutrum. <a label="emc2">
 
-Proin tristique ac magna sed laoreet. Mauris at tristique nunc, vitae euismod arcu. Duis pharetra nisi at volutpat cursus. Aenean consectetur scelerisque elit, eu hendrerit augue consequat pretium. Vivamus sagittis convallis faucibus. Morbi pulvinar risus vel quam bibendum, eu ultricies nulla sollicitudin. Vestibulum tempus ante eget est bibendum semper. Pellentesque lobortis imperdiet nisi, in porta enim sagittis ac. Phasellus suscipit, sapien a interdum laoreet, dui est dignissim urna, non pulvinar quam neque hendrerit lectus. Integer euismod elit quis odio bibendum finibus. Proin efficitur sem nec orci aliquet, vel hendrerit tellus consequat. Donec eu dui dictum, egestas justo at, suscipit sem. Etiam vehicula elementum quam consectetur imperdiet. Fusce bibendum lorem a dapibus dapibus.
-
-Nam eleifend libero enim, pharetra efficitur leo facilisis id. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sodales tristique diam. Aenean eu augue euismod, euismod ligula in, fringilla diam. Nam luctus condimentum neque, in lacinia dui efficitur et. Curabitur fermentum varius nisi, in tincidunt ipsum bibendum ut. Quisque eu massa mollis purus ultrices tempor. Pellentesque metus urna, viverra eget enim in, pellentesque consectetur diam. Ut at enim sit amet enim efficitur ultricies. Vivamus arcu enim, pharetra vel bibendum non, laoreet vel odio. Integer non nisl mattis, sagittis nisi eget, auctor libero. Maecenas varius bibendum turpis eu facilisis. Nulla metus nisi, blandit at lorem at, maximus elementum orci. Nulla vel leo sed leo suscipit cursus. Cras nibh risus, laoreet a mollis sit amet, volutpat vel nulla. In in ullamcorper eros, eget gravida orci.
-
-
-\[E=mc^2\]
+\[F = G\frac{m_1m_2}{r^2}\]\label{forca_gravidade}

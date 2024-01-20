@@ -1,11 +1,9 @@
 from rule import Rule
 import re
-
-# Dicionário que associa para cada número o código que foi aplicado
-CODE_REF: dict[int, str] = {}
+from jff_globals import CODE_REF
 
 
-def code_formatting(self: Rule, metadata: dict[str, str], match) -> str:
+def code_formatting(self: Rule, match) -> str:
     num_codes = len(CODE_REF)
     # Coloca no lugar
     replace = f"<CODEREF({num_codes})/>"
@@ -22,8 +20,8 @@ CODE = Rule(
 )
 
 
-def apply_code(string: str, metadata: dict):
-    return CODE.apply(string, metadata)
+def apply_code(string: str):
+    return CODE.apply(string)
 
 
 def resolve_code(string: str) -> str:
