@@ -15,9 +15,9 @@ def code_formatting(self: Rule, metadata: dict[str, str], match) -> str:
 
 CODE = Rule(
     "Code",
-    r"\`\`\`(.+?)\n(.+?)\`\`\`",
+    r"^\`\`\`(?!\n)(.+?)\n(.+?)\`\`\`(?=\n\n)",
     '<pre><code class="language-\\1">\\2</code></pre>',
-    flags=re.DOTALL,
+    flags= re.DOTALL | re.MULTILINE,
     formatting=code_formatting,
 )
 

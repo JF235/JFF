@@ -11,7 +11,7 @@ def paragraph_formatting(self: Rule, metadata: dict[str, str], match) -> str:
     if match:
         middle = match.group(3).strip()
         ident = match.group(1) if match.group(1) else ""
-        replace = ident + match.group(2) + middle + match.group(4) + "\n"
+        replace = ident + match.group(2) + " " + middle + " " + match.group(4) + "\n"
     return replace
 
 

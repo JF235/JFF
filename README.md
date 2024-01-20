@@ -18,4 +18,3 @@ python jff.py filename.md
 - Melhorar a forma de incluir os arquivos css para novas regras
 - Adicionar uma documentação com todos os recursos disponíveis
 - Repensar os padrões especiais de parágrafo
-- Padrões que devem ser precedidos por um espaço vazio ou um começo de linha, como itálico e negrito. Desta forma, seria capaz de adicionar caracteres de escape e evitar ambiguidades, como no caso de negrito/itálico.
