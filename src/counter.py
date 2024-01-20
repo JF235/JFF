@@ -1,9 +1,6 @@
 import re
-
-
-COUNTER_DICT: dict[str, int] = {}
-REFERENCE_DICT: dict[str, int] = {}
-
+from default_rules.reference import REFERENCE
+from jff_globals import REFERENCE_DICT, COUNTER_DICT
 
 def resolve_numbering(string: str, metadata: dict) -> str:
     """Após a primeira substituição realizada com os métodos,
@@ -26,6 +23,7 @@ def resolve_numbering(string: str, metadata: dict) -> str:
         counter_name = counter_name.strip()
         COUNTER_DICT[counter_name] = 0
     string = resolve_counters(string)
+    string = REFERENCE.apply(string, metadata)
     string = resolve_references(string)
     return string
 
@@ -48,7 +46,7 @@ def resolve_references(string: str) -> str:
         counter_label = match.group(3)
 
         new_string = (
-            new_string[:pos] + f"{REFERENCE_DICT[counter_label]}" + new_string[endpos:]
+            new_string[:pos] + f"{REFERENCE_DICT[counter_label][0]}" + new_string[endpos:]
         )
 
         match = pattern.search(new_string)
@@ -79,7 +77,7 @@ def resolve_counters(string: str) -> str:
             COUNTER_DICT[counter_name] += 1
             if counter_label:
                 # Se existir label, armazena no dicionário de referências
-                REFERENCE_DICT[counter_label] = COUNTER_DICT[counter_name]
+                REFERENCE_DICT[counter_label] = (COUNTER_DICT[counter_name], counter_name)
             new_string = new_string[: pos - 1] + new_string[endpos:]
             endpos = pos - 1
         elif counter_operation == "=":

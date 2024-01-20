@@ -11,7 +11,6 @@ python jff.py filename.md
 
 ## TODOS
 
-- Numerar equação
 - Permitir que as referências sejam feitas independente do que foi citado (vídeos, figuras, código)
 - Incluir as legendas de ambientes separadamente.
 - Incluir arquivo css padrão nos metadados

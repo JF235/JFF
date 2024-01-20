@@ -10,7 +10,6 @@ from default_rules.lists import (
 )
 from default_rules.figure import FIGURE
 from default_rules.video import VIDEO
-from default_rules.reference import REFERENCE
 
 from custom_rules.question_answer import QUESTION, ANSWER
 from custom_rules.example_enviroment import EXAMPLE_ENV
@@ -34,6 +33,5 @@ RULES = [
     UNORDERED_ITEM,
     FIGURE,
     VIDEO,
-    REFERENCE,
-    EXAMPLE_ENV,
+    EXAMPLE_ENV
 ]

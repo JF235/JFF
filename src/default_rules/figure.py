@@ -56,5 +56,5 @@ def figure_formatting(self: Rule, metadata: dict[str, str], match) -> str:
 
 _figure_params = r'(?: (.+?)="(.+?)")*'
 _figure = r'<fig(?:ure)? src="(.+?)"' + _figure_params + r">"
-_figure_repl = r'<figure COUNTER(FIG,+,FIGLABEL)><img src="FIGNAME" FIGSTYLE id="fig-FIGLABEL">FIG_CAPTION</figure>'
+_figure_repl = r'<figure COUNTER(FIG,+,FIGLABEL)><img src="FIGNAME" FIGSTYLE id="FIGLABEL">FIG_CAPTION</figure>'
 FIGURE = Rule("Figure", _figure, _figure_repl, formatting=figure_formatting)

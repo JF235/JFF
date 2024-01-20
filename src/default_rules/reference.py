@@ -1,16 +1,11 @@
 from rule import Rule
-import re
-
+from jff_globals import REFERENCE_DICT
 
 def reference_formattig(self: Rule, metadata: dict[str, str], match) -> str:
-    replace = self.repl
-    pattern = re.compile("REF_FORMAT")
-    refmatch = pattern.search(self.repl)
-    if refmatch:
-        reference_format = metadata[refmatch.group(0)].strip("'")
-        replace = (
-            replace[: refmatch.start()] + reference_format + replace[refmatch.end() :]
-        )
+    label = match.group(1)
+    _, reference_name = REFERENCE_DICT[label]
+    ref_format = metadata[reference_name + '_REF'].strip("'")
+    replace = r'<a href="#\1" class="reference">' + ref_format + '</a>'
     replace = match.expand(replace)
     return replace
 
@@ -18,6 +13,6 @@ def reference_formattig(self: Rule, metadata: dict[str, str], match) -> str:
 REFERENCE = Rule(
     "Reference",
     r'<a label="(.+)">',
-    r'<a href="#fig-\1" class="reference">REF_FORMAT</a>',
+    "",
     formatting=reference_formattig,
 )
