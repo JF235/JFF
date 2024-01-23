@@ -3,7 +3,7 @@ body {
     margin: 0 auto;
     width: 70%;
     font-size: larger;
-    font-family: 'TeX Gyre Schola';
+    font-family: 'TeX Gyre Schola', serif;
 }
 
 h1,
@@ -27,6 +27,13 @@ video {
 
 figcaption {
     text-align: center;
+}
+
+code {
+    background-color: #f1f1f1;
+    padding: 3px;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
 }
 
 .caption {

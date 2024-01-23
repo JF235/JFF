@@ -48,3 +48,18 @@ Pellentesque eu consequat diam, eget bibendum leo. Nam tristique, turpis eu vest
 Phasellus elementum lacus metus, id convallis sapien pretium nec. Donec at urna nisi. Curabitur congue aliquam dapibus. Nulla ac eros dolor. Duis tempor lectus lacinia lectus semper blandit. Pellentesque aliquam blandit lorem, ac pretium odio fringilla bibendum. Cras efficitur diam vel dolor fringilla, ut imperdiet libero rutrum. <a label="emc2">
 
 \[F = G\frac{m_1m_2}{r^2}\]\label{forca_gravidade}
+
+O código abaixo implementa um `BDF (Bayesian Discrete Filter)`, testando `*negrito* ou $formula$ dentro de código`
+
+<answer>
+1. Obter distribuição *prior* $\bar{x}$ (Inicialização)
+2. Obter uma medida e a probabilidade associada a essa medida
+3. Computar a função de *verossimilhança (likelihood)* $\mathcal{L}$ associada a medida
+4. Atualizar a distribuição *prior* obtendo a *posterior* (Atualização)
+
+    \[x = \|\mathcal{L}\cdot \bar{x}\|\]
+
+5. Propagar o modelo usando convolução (Predição)
+
+    \[\bar{x} = dx \ast x\]
+</answer>

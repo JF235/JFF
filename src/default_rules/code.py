@@ -1,6 +1,6 @@
 from rule import Rule
 import re
-from jff_globals import CODE_REF, METADATA
+from jff_globals import CODE_REF, INLINECODE_REF, METADATA
 
 METADATA["COUNTERS"] += ", CODE"
 METADATA.update(
@@ -25,6 +25,12 @@ def code_formatting(self: Rule, match) -> str:
         )
     return replace
 
+def inlinecode_formatting(self: Rule, match) -> str:
+    num_codes = len(INLINECODE_REF)
+    # Coloca no lugar
+    replace = f"<INLINECODEREF({num_codes})/>"
+    INLINECODE_REF[num_codes] = match.expand(self.repl)
+    return replace
 
 CODE = Rule(
     "Code",
@@ -34,21 +40,34 @@ CODE = Rule(
     formatting=code_formatting,
 )
 
+_empty_space = r"(?<=[ ]|\n)"
+INLINE_CODE = Rule(
+    "Inline code",
+    _empty_space + r'`(.+?)`',
+    r'<code>\1</code>',
+    formatting=inlinecode_formatting
+)
+
 
 def apply_code(string: str):
-    return CODE.apply(string)
+    string = CODE.apply(string)
+    string = INLINE_CODE.apply(string)
+    return string
 
 
 def resolve_code(string: str) -> str:
+    dicts = [CODE_REF, INLINECODE_REF]
+    strings = [r"<CODEREF\((.+?)\)/>", r"<INLINECODEREF\((.+?)\)/>"]
     new_string = string
-    pattern = re.compile(r"<CODEREF\((.+?)\)/>")
-    match = pattern.search(new_string)
-    while match:
-        pos, endpos = match.span()
-
-        code_num = int(match.group(1))
-
-        new_string = new_string[:pos] + f"{CODE_REF[code_num]}" + new_string[endpos:]
-
+    for d, s in zip(dicts, strings):
+        pattern = re.compile(s)
         match = pattern.search(new_string)
+        while match:
+            pos, endpos = match.span()
+
+            code_num = int(match.group(1))
+
+            new_string = new_string[:pos] + f"{d[code_num]}" + new_string[endpos:]
+
+            match = pattern.search(new_string)
     return new_string

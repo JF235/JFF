@@ -10,7 +10,7 @@ body {
     margin: 0 auto;
     width: 70%;
     font-size: larger;
-    font-family: 'TeX Gyre Schola';
+    font-family: 'TeX Gyre Schola', serif;
 }
 
 h1,
@@ -34,6 +34,13 @@ video {
 
 figcaption {
     text-align: center;
+}
+
+code {
+    background-color: #f1f1f1;
+    padding: 3px;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
 }
 
 .caption {
@@ -229,6 +236,49 @@ int main(void){
 \[
 F = G\frac{m_1m_2}{r^2}
 \tag{2}\]
+</div>
+
+<p> O código abaixo implementa um <code>BDF (Bayesian Discrete Filter)</code> </p>
+
+<div class="answer">
+<div class="answer_title">Resposta</div>
+
+<ol>
+
+<li>
+Obter distribuição <em>prior</em> \(\bar{x}\) (Inicialização)
+</li>
+
+<li>
+Obter uma medida e a probabilidade associada a essa medida
+</li>
+
+<li>
+Computar a função de <em>verossimilhança (likelihood)</em> \(\mathcal{L}\) associada a medida
+</li>
+
+<li>
+Atualizar a distribuição <em>prior</em> obtendo a <em>posterior</em> (Atualização)
+
+    <div>
+\[
+x = \|\mathcal{L}\cdot \bar{x}\|
+\tag{3}\]
+</div>
+</li>
+
+<li>
+Propagar o modelo usando convolução (Predição)
+
+    <div>
+\[
+\bar{x} = dx \ast x
+\tag{4}\]
+</div>
+</li>
+
+</ol>
+
 </div>
 
 

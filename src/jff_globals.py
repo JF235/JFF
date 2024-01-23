@@ -18,3 +18,4 @@ APPDIR = os.path.realpath(os.path.dirname(__file__)) + "\\.."
 
 # Dicionário que associa para cada número o código que foi aplicado
 CODE_REF: dict[int, str] = {}
+INLINECODE_REF: dict[int, str] = {}
