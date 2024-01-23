@@ -33,7 +33,7 @@ def resolve_numbering(string: str) -> str:
 
 
 def identify_labels(string: str):
-    pattern = re.compile(r"COUNTER[(](.+?),[^)]+?,(.+?)[)]")
+    pattern = re.compile(r"COUNTER[(]([^)]+?),[^)]+?,([^)]+?)[)]")
     match = pattern.search(string)
     while match:
         counter_name = match.group(1)
