@@ -11,10 +11,8 @@ python jff.py filename.md
 
 ## TODOS
 
-- Incluir as legendas de ambientes separadamente.
 - Incluir arquivo css padrão nos metadados
 - Melhorar a forma de incluir os arquivos css para novas regras
 - Adicionar uma documentação com todos os recursos disponíveis
 - Repensar os padrões especiais de parágrafo
 - Múltiplos caminhos para media
-- Referências nas legendas das figuras (adicionar caption dos códigos para figuras e vídeos também)

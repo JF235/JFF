@@ -321,7 +321,10 @@ $$\mathbf{C} = R_x(\phi)R_z(\psi)R_y(\theta)$$
 
 O resultado é mostrado no <a label="vid-rotate-xyz">
 
-<vid src="rotate-xyz" caption="Rotação com Gimbal Lock" label="vid-rotate-xyz">
+<vid src="rotate-xyz" label="vid-rotate-xyz">
+<caption>
+Rotação com Gimbal Lock
+</caption>
 
 A diferença entre os resultados aparece por conta da ordem das multiplicações.
 

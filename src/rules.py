@@ -10,6 +10,7 @@ from default_rules.lists import (
 )
 from default_rules.figure import FIGURE
 from default_rules.video import VIDEO
+from default_rules.link import LINK
 
 from custom_rules.question_answer import QUESTION, ANSWER
 from custom_rules.example_enviroment import EXAMPLE_ENV
@@ -33,5 +34,6 @@ RULES = [
     INLINE_MATH,
     FIGURE,
     VIDEO,
+    LINK,
     EXAMPLE_ENV
 ]

@@ -39,12 +39,18 @@ def video_formatting(self: Rule, match) -> str:
     )
 
     # Tratando a legenda
-    vidcaption_match = re.search(r' caption="(.+?)"', video_string)
+    vidformat = METADATA["VID_FORMAT"].strip("'")
     full_vidcaption = ""
-    if vidcaption_match:
-        vidcaption = vidcaption_match.group(1)
-        vidformat = METADATA["VID_FORMAT"].strip("'")
+    if match.group(4):
+        # Tem legenda na forma de <caption></caption>
+        vidcaption = match.group(4).strip()
         full_vidcaption = f'<figcaption><span class="videolabel">{vidformat}</span>{vidcaption}</figcaption>'
+    else:
+        # Busca tag caption=""
+        vidcaption_match = re.search(r' caption="(.+?)"', video_string)
+        if vidcaption_match:
+            vidcaption = vidcaption_match.group(1)
+            full_vidcaption = f'<figcaption><span class="videolabel">{vidformat}</span>{vidcaption}</figcaption>'
 
     vidlabel_match = re.search(r' label="(.+?)"', video_string)
     vidlabel = vidlabel_match.group(1) if vidlabel_match else vidname
@@ -55,7 +61,7 @@ def video_formatting(self: Rule, match) -> str:
 
 
 _video_params = r'(?: (.+?)="(.+?)")*'
-_video = r'<vid src="(.+?)"' + _video_params + r">"
+_video =  r'<vid src="(.+?)"' + _video_params + r">" + r"(?:\n<caption>(.+?)</caption>)?"
 _video_repl = ""
 
-VIDEO = Rule("Video", _video, _video_repl, formatting=video_formatting)
+VIDEO = Rule("Video", _video, _video_repl, formatting=video_formatting, flags= re.DOTALL)

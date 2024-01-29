@@ -56,5 +56,8 @@ study of nearness relations. A topology on $X$ is called **Hausdorff** if the po
 in every pair lie in disjoint neighborhoods or, more technically, if for every two
 points $p, q ∈ X$, there exist two disjoint open sets $U$ and $V$ such that $p ∈ U$
 and $q ∈ V$. We will primarily be interested in Hausdorff topologies, because these
-coincide with our intuition that points are isolated objects; other sorts of topologies
+coincide with our intuition that points are isolated objects (<a label="fig-manifolds3">); other sorts of topologies
 are generally considered to be pathological (at least by non-topologists).
+
+<figure src="manifolds3.svg" style="width:70%" label="fig-manifolds3">
+<caption>The points $x$ and $y$, separated by their respective neighbourhoods $U$ and $V$.</caption>

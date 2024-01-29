@@ -80,3 +80,12 @@ code {
 .answer_title {
     color: #4779bc;
 }
+
+.url {
+    color: darkblue;
+    text-decoration: none;
+}
+
+.url:hover {
+    text-decoration: underline;
+}

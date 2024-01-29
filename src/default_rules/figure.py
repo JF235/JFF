@@ -40,12 +40,18 @@ def figure_formatting(self: Rule, match) -> str:
     )
 
     # Tratando a legenda
-    figcaption_match = re.search(r' caption="(.+?)"', figure_string)
+    figformat = METADATA["FIG_FORMAT"].strip("'")
     full_figcaption = ""
-    if figcaption_match:
-        figcaption = figcaption_match.group(1)
-        figformat = METADATA["FIG_FORMAT"].strip("'")
+    if match.group(4):
+        # Tem legenda na forma de <caption></caption>
+        figcaption = match.group(4).strip()
         full_figcaption = f'<figcaption><span class="figurelabel">{figformat}</span>{figcaption}</figcaption>'
+    else:
+        # Busca tag caption=""
+        figcaption_match = re.search(r' caption="(.+?)"', figure_string)
+        if figcaption_match:
+            figcaption = figcaption_match.group(1)
+            full_figcaption = f'<figcaption><span class="figurelabel">{figformat}</span>{figcaption}</figcaption>'
 
     # Tratando o label
     figlabel_match = re.search(r' label="(.+?)"', figure_string)
@@ -57,5 +63,5 @@ def figure_formatting(self: Rule, match) -> str:
 
 
 _figure_params = r'(?: (.+?)="(.+?)")*'
-_figure = r'<fig(?:ure)? src="(.+?)"' + _figure_params + r">"
-FIGURE = Rule("Figure", _figure, "", formatting=figure_formatting)
+_figure = r'<fig(?:ure)? src="(.+?)"' + _figure_params + r">" + r"(?:\n<caption>(.+?)</caption>)?"
+FIGURE = Rule("Figure", _figure, "", formatting=figure_formatting, flags= re.DOTALL)
