@@ -17,3 +17,4 @@ python jff.py filename.md
 - Adicionar uma documentação com todos os recursos disponíveis
 - Repensar os padrões especiais de parágrafo
 - Múltiplos caminhos para media
+- Referências nas legendas das figuras (adicionar caption dos códigos para figuras e vídeos também)

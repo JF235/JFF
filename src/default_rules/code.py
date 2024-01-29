@@ -40,7 +40,7 @@ CODE = Rule(
     formatting=code_formatting,
 )
 
-_empty_space = r"(?<=[ ]|\n)"
+_empty_space = r"(?<=[ ]|\n|[(])"
 INLINE_CODE = Rule(
     "Inline code",
     _empty_space + r'`(.+?)`',

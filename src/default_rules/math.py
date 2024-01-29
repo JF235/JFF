@@ -11,7 +11,7 @@ METADATA.update(
 )
 
 
-_empty_space = r"(?<=[ ]|\n)"
+_empty_space = r"(?<=[ ]|\n|[(])"
 DISPLAY_MATH = Rule(
     "Display Math", _empty_space + r"\$\$(.+?)\$\$", r"\[\1\]", re.DOTALL
 )
