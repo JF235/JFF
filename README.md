@@ -4,9 +4,17 @@ Formatando documentos.
 
 ## Uso
 
+Adicionar a pasta no PATH
+
 ```bash
-python jff.py filename.md
+jff filename.md
 # Outputs: filename.html in current directory
+```
+
+ou caso só exista somente um arquivo `.md` no diretório atual, basta executar
+
+```bash
+jff
 ```
 
 ## TODOS
