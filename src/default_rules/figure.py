@@ -24,12 +24,18 @@ def figure_formatting(self: Rule, match) -> str:
     full_figname = os.path.join(figpath, figname)
 
     if ext == "":
-        arquivo = next(
-            arquivo
-            for arquivo in os.listdir(figpath)
-            if os.path.splitext(arquivo)[0] == name
-        )
-        full_figname = os.path.join(figpath, arquivo)
+        if figpath == "":
+            figpath = "./"
+            
+        arquivos = [arquivo for arquivo in os.listdir(figpath) if os.path.splitext(arquivo)[0] == name]
+        
+        if arquivos:
+            arquivo = arquivos[0]
+            full_figname = os.path.join(figpath, arquivo)
+        else:
+            print(f"Arquivo não encontrado. '{full_figname}'")
+        
+        
 
     # Trantando o estilo
     figstyle_match = re.search(r' style="(.+?)"', figure_string)
@@ -56,8 +62,13 @@ def figure_formatting(self: Rule, match) -> str:
     # Tratando o label
     figlabel_match = re.search(r' label="(.+?)"', figure_string)
     figlabel = figlabel_match.group(1) if figlabel_match else figname
-
-    replace = f'<figure COUNTER(FIG,+,{figlabel})><img src="{full_figname}" {figstyle} id="{figlabel}">{full_figcaption}</figure>'
+    
+    if full_figcaption == "":
+        # Se não tem legenda, não adiciona contador
+        replace = f'<figure><img src="{full_figname}" {figstyle} id="{figlabel}">{full_figcaption}</figure>'
+    else:
+        # Do contrário, incrementa o contador
+        replace = f'<figure COUNTER(FIG,+,{figlabel})><img src="{full_figname}" {figstyle} id="{figlabel}">{full_figcaption}</figure>'
 
     return replace
 

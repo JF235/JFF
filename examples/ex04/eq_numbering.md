@@ -12,6 +12,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem dui, tempus 
 foo() function
 </caption>
 ```python
+<testing>
 def foo():
     return 1*1*1
 ```
@@ -20,11 +21,13 @@ Suspendisse potenti. Etiam nec orci non lacus dictum tempor quis eu mi. Pellente
 
 <fig src="https://cdn.britannica.com/82/149182-050-574AF9C2/Black-Eyed-Peas-Fergie-Taboo-ap.jpg" caption="Os caras" label="w-fergie">
 
+<fig src="inexistente">
+
 Proin eros massa, euismod a nunc aliquam, <a label="forca_gravidade"> consequat bibendum metus. Maecenas dictum turpis a vulputate tincidunt. Sed sodales leo ut viverra semper. Aliquam erat volutpat. Etiam ac felis aliquet, cursus est at, vehicula augue. Aliquam commodo diam et arcu molestie iaculis. Etiam ornare nisl orci, pulvinar mattis arcu convallis vitae. Aenean porttitor, lacus ac lacinia semper, augue libero elementum elit, vitae accumsan mi ex id velit. 
 
 \[E = mc^2\]\label{emc2}
 
-Morbi luctus, augue quis fringilla hendrerit, massa dui scelerisque ligula, non condimentum justo tortor vitae odio. Nunc pharetra tincidunt justo, quis eleifend arcu volutpat eget. Aliquam feugiat dui nisi, sit amet placerat ex facilisis et. Vestibulum viverra mattis ex quis molestie.
+Morbi luctus, augue quis fringilla hendrerit, massa dui scelerisque ligula, non condimentum `<inlinetag>`. Nunc pharetra tincidunt justo, quis eleifend arcu volutpat eget. Aliquam feugiat dui nisi, sit amet placerat ex facilisis et. Vestibulum viverra mattis ex quis molestie.
 
 # Mais teste
 
@@ -45,7 +48,7 @@ Pellentesque eu consequat diam, eget bibendum leo. Nam tristique, turpis eu vest
 
 <fig src="https://www.tenhomaisdiscosqueamigos.com/wp-content/uploads/2018/11/black-eyed-peas-masters-sun-vol-1.jpeg" caption="Cade a fergie" label="wo-fergie">
 
-Phasellus elementum lacus metus, id convallis sapien pretium nec. Donec at urna nisi. Curabitur congue aliquam dapibus. Nulla ac eros dolor. Duis tempor lectus lacinia lectus semper blandit. Pellentesque aliquam blandit lorem, ac pretium odio fringilla bibendum. Cras efficitur diam vel dolor fringilla, ut imperdiet libero rutrum. <a label="emc2">
+Phasellus elementum lacus metus, id convallis sapien pretium nec. Donec at urna nisi. Curabitur congue aliquam dapibus. Nulla ac eros dolor. Duis tempor lectus lacinia lectus semper blandit. Pellentesque aliquam blandit lorem, ac pretium odio fringilla bibendum. Cras efficitur diam vel <a label="indefinida"> dolor fringilla, ut imperdiet libero rutrum. <a label="emc2">
 
 \[F = G\frac{m_1m_2}{r^2}\]\label{forca_gravidade}
 
