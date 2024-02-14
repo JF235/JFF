@@ -3,13 +3,11 @@ import re
 def rawString(string: str) -> str:
     return repr(string)[1:-1]
 
-
 # TODO: Talvez eu não precise disso se eu fizer o meu próprio expand
 # Pois estava tendo problemas com o uso de .expand em strings com caracteres escapados
 def default_formatting(self, match):
     replace = match.expand(self.repl)
     return replace
-
 
 class Rule:
     def __init__(
@@ -49,6 +47,8 @@ class Rule:
             replace = self.formatting(self, match)
             new_string = new_string[:pos] + replace + new_string[endpos:]
 
+            # A soma de len(replace) garante que a nova busca só acontece após todo
+            # texto já analisado, evitando reaplicações de regra.
             match = self.pattern.search(new_string, pos + len(replace))
 
         return new_string

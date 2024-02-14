@@ -5,7 +5,8 @@
             "name": "Python: JFF",
             "type": "python",
             "request": "launch",
-            "program": "src/jff.py",
+            "program": "${workspaceFolder}/src/jff.py",
+            "cwd": "${workspaceFolder}/examples/ex05",
             "console": "integratedTerminal",
             "justMyCode": true,
             "args": "DEBUGMODE"

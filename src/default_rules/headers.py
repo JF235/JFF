@@ -1,9 +1,10 @@
 from rule import Rule
 from jff_globals import METADATA
+import metadata
 import re
 
-METADATA["COUNTERS"] += ", H1, H2, H3"
-METADATA.update(
+metadata.set_counter(["H1", "H2", "H3"])
+metadata.update(
     {
         "H1_FORMAT": "'COUNTER(H1,=). '",
         "H2_FORMAT": "'COUNTER(H1,=).COUNTER(H2,=). '",

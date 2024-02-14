@@ -2,6 +2,14 @@ from rule import Rule
 from jff_globals import LABEL_DICT, METADATA
 
 def reference_formattig(self: Rule, match) -> str:
+    # Substitui a tag <a label="foo"> pelo formatador correto
+    # (indicado no dicionario LABEL_DICT)
+    #
+    # Exemplo:
+    #
+    # <a label="figfoo">
+    # 
+    # <a href="#figfoo" class="reference">Figura COUNTER(FIG,=,fig-foo)</a>'
     label = match.group(1)
     reference_name = LABEL_DICT.get(label, "??")
     if reference_name == "??":

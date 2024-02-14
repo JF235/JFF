@@ -24,15 +24,36 @@ def resolve_numbering(string: str) -> str:
         counter_name = counter_name.strip()
         COUNTER_DICT[counter_name] = 0
 
+    # (1)
     identify_labels(string)
     string = REFERENCE.apply(string)
+
+    # (2)
     string = resolve_counters(string)
 
+    # (3)
     string = resolve_references(string)
+
+    # A necessidade de tantos processamentos tem origem:
+    # - (1) substituicao da regra <a label="foo"> pelos formatadores
+    # - (2) resolve os contadores que não apresentam rótulo
+    # - (3) resolve os contadores que apresentam rótulo
+
     return string
 
 
 def identify_labels(string: str):
+    """Busca todos os contadores que possuem label.
+
+    Adiciona no dicionário `LABEL_DICT` o par:
+    - label: contador associado a essa label
+
+    Esse pré-processamento é fundamental para substituir as referências
+    `<a label="foo">` pelos formatadores apropriados (como H1_FORMAT, FIG_FORMAT, CODE_FORMAT), uma vez que na aplicação dessa regra os contadores não foram resolvidos.
+
+    Args:
+        string (str): String com contadores não resolvidos
+    """
     pattern = re.compile(r"COUNTER[(]([^)]+?),[^)]+?,([^)]+?)[)]")
     match = pattern.search(string)
     while match:
@@ -70,7 +91,7 @@ def resolve_references(string: str) -> str:
 
 
 def resolve_counters(string: str) -> str:
-    """Resolve os contadores com substituiçao direta
+    """Resolve os contadores com substituiçao direta e atualiza os contadores dinamicamente baseando-se nos incrementadores `COUNTER(countername,+)`
 
     Args:
         string (str): String com, possivelmente, padrões `COUNTER(countername,=)`
@@ -96,6 +117,7 @@ def resolve_counters(string: str) -> str:
                 REFERENCE_DICT[counter_label] = COUNTER_DICT[counter_name]
             new_string = new_string[: pos - 1] + new_string[endpos:]
             endpos = pos - 1
+
         elif counter_operation == "=":
             # Substituição direta pelo contador
             if counter_label is None:
@@ -106,6 +128,8 @@ def resolve_counters(string: str) -> str:
                     + new_string[endpos:]
                 )
                 endpos = pos + len(str(COUNTER_DICT[counter_name]))
+            # Se existir label, então espera para resolver depois.
+
         elif counter_operation == "0":
             # Reseta o contador
             COUNTER_DICT[counter_name] = 0

@@ -2,9 +2,10 @@ from rule import Rule
 from jff_globals import METADATA
 import re
 import os
+import metadata
 
-METADATA["COUNTERS"] += ", FIG"
-METADATA.update(
+metadata.set_counter("FIG")
+metadata.update(
     {
         "FIG_FORMAT": "'Figure COUNTER(FIG,=) - '",
         "FIG_REF": r"'Fig.&nbsp;COUNTER(FIG,=,\1)'",

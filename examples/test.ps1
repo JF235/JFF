@@ -23,7 +23,7 @@ foreach ($folder in $folders) {
         } else {
             Write-Host "❌ ERRO - Conteúdos são diferentes para $($folder.Name)"
             # Mostra as diferenças se necessário
-            $diff
+            #$diff
         }
     } else {
         Write-Host "ERRO - Nenhum arquivo .md encontrado para $($folder.Name)"

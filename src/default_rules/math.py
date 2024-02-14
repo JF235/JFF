@@ -1,9 +1,10 @@
 from rule import Rule
 from jff_globals import METADATA
+import metadata
 import re
 
-METADATA["COUNTERS"] += ", EQ"
-METADATA.update(
+metadata.set_counter("EQ")
+metadata.update(
     {
         "EQ_FORMAT": r"'COUNTER(EQ,=)'",
         "EQ_REF": r"'Eq.&nbsp;COUNTER(EQ,=,\1)'",

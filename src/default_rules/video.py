@@ -1,10 +1,11 @@
 from rule import Rule
 from jff_globals import METADATA
+import metadata
 import re
 import os
 
-METADATA["COUNTERS"] += ", VID"
-METADATA.update(
+metadata.set_counter("VID")
+metadata.update(
     {
         "VID_FORMAT": "'Vídeo COUNTER(VID,=) - '",
         "VID_STYLE": "width: 50%",
