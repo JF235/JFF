@@ -27,3 +27,90 @@ h1 {
     font-weight: bold;
     text-align: center;
 }
+
+.lettrine::first-letter {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: brown;
+}
+
+.url {
+    text-decoration: none;
+    color: rgb(238, 110, 131);
+}
+
+.reference {
+    text-decoration: dashed underline 1px;
+    color: brown;
+}
+
+figcaption {
+    text-align: center;
+}
+
+.figurelabel {
+    font-weight: bold;
+    color: brown;
+}
+
+img {
+    margin: 0 auto;
+    display: block;
+}
+
+strong {
+    color: brown;
+}
+
+.wikiquote-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+
+    background-color: #fff;
+    position: relative;
+}
+
+.wikiquote-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.wikiquote-title {
+    text-decoration: none;
+    color: #000;
+    margin-left: 3em;
+    margin-bottom: 1em;
+    margin-top: .3em;
+    font-size: 1.2em;
+}
+
+.wikiquote-content {
+    padding: .4em;
+    color: #4e4e4e;
+    font-style: italic;
+}
+
+.wikiquote-logo {
+    height: 3.5em;
+    position: absolute;
+    top: -5px;
+    left: -10px;
+}
+
+.wikiquote-box a {
+    text-decoration: none;
+}
+
+.small_rule {
+    width: 50%;
+}
+
+.caption {
+    text-align: center;
+}
+
+.codelabel {
+    font-weight: bold;
+    color: brown;
+}

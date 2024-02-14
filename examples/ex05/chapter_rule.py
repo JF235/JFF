@@ -61,3 +61,30 @@ def h1_formattig(self: Rule, match) -> str:
 
 h1rule = next(filter(lambda r: r.name == "Header 1", RULES))
 h1rule.formatting = h1_formattig
+
+#=====================================================
+# Lettrine
+#=====================================================
+
+LETTRINE = Rule(
+    "Lettrine",
+    r"^<p> !",
+    r'<p class="lettrine"> ',
+    flags = re.MULTILINE
+)
+
+RULES.append(LETTRINE)
+print("Imported LETTRINE")
+
+#=====================================================
+# Lettrine
+#=====================================================
+
+WIKIPEDIA_BOX = Rule(
+    "Wikipedia Box",
+    r'<wikipedia title="([^)]+?)" url="([^)]+?)">(.+?)</wikipedia>',
+    r'<div class="wikiquote-box"><a href="\2"><img  class="wikiquote-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png"><div class="wikiquote-title">\1</div></a><div class="wikiquote-content">\3</div></div>',
+    flags = re.DOTALL
+)
+
+RULES.insert(0, WIKIPEDIA_BOX)

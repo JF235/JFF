@@ -113,7 +113,7 @@ def inlinecode_formatting(self: Rule, match) -> str:
 
 CODE = Rule(
     "Code",
-    r'(?:<caption(?: label="(.+?)")?>(.+?)</caption>\n)?^\`\`\`(?!\n)(.+?)\n(.+?)\`\`\`(?=\n\n)',
+    r'(?:<caption(?: label="(.+?)")?>((?:(?!</caption>).)+)</caption>\n)?^\`\`\`(?!\n)(.+?)\n(.+?)\`\`\`(?=\n\n)',
     r'<pre><code class="language-\3">\4</code></pre>',
     flags=re.DOTALL | re.MULTILINE,
     formatting=code_formatting,

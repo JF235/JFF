@@ -15,11 +15,12 @@ metadata.update(
 
 
 def figure_formatting(self: Rule, match) -> str:
-    figure_string = match.group(0)
+    # match.group(1) é somente a parte da figura, sem legenda
+    figure_string = match.group(1)
     # TODO: Adicionar suporte para múltiplos caminhos
     figpath = METADATA["MEDIA_PATH"]
 
-    figname = match.group(1)
+    figname = match.group(2)
     name, ext = os.path.splitext(figname)
 
     full_figname = os.path.join(figpath, figname)
@@ -49,9 +50,9 @@ def figure_formatting(self: Rule, match) -> str:
     # Tratando a legenda
     figformat = METADATA["FIG_FORMAT"].strip("'")
     full_figcaption = ""
-    if match.group(4):
+    if match.group(5):
         # Tem legenda na forma de <caption></caption>
-        figcaption = match.group(4).strip()
+        figcaption = match.group(5).strip()
         full_figcaption = f'<figcaption><span class="figurelabel">{figformat}</span>{figcaption}</figcaption>'
     else:
         # Busca tag caption=""
@@ -75,5 +76,5 @@ def figure_formatting(self: Rule, match) -> str:
 
 
 _figure_params = r'(?: (.+?)="(.+?)")*'
-_figure = r'<fig(?:ure)? src="(.+?)"' + _figure_params + r">" + r"(?:\n<caption>(.+?)</caption>)?"
+_figure = r'(<fig(?:ure)? src="(.+?)"' + _figure_params + r">)" + r"(?:\n<caption>(.+?)</caption>)?"
 FIGURE = Rule("Figure", _figure, "", formatting=figure_formatting, flags= re.DOTALL)
