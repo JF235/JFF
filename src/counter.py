@@ -130,10 +130,13 @@ def resolve_counters(string: str) -> str:
                 endpos = pos + len(str(COUNTER_DICT[counter_name]))
             # Se existir label, então espera para resolver depois.
 
-        elif counter_operation == "0":
-            # Reseta o contador
-            COUNTER_DICT[counter_name] = 0
-            new_string = new_string[: pos - 1] + new_string[endpos:]
+        elif counter_operation.isdecimal():
+            # Seta o contador
+            COUNTER_DICT[counter_name] = int(counter_operation)
+            if new_string[pos - 1] == " " and pos - 1 >= 0:
+                new_string = new_string[: pos - 1] + new_string[endpos:]
+            else:
+                new_string = new_string[:pos] + new_string[endpos:]
             endpos = pos
 
         match = pattern.search(new_string, endpos)
