@@ -1,5 +1,11 @@
 # JF's Formatting
 
+> [!IMPORTANT]
+> **Projeto arquivado.** O JFF foi substituído pelo [Escrita](https://github.com/JF235/escrita),
+> que continua a mesma ideia — Markdown → páginas HTML com numeração, figuras, equações e
+> referências cruzadas — num compilador em Rust, extensível por plugins e que gera páginas
+> que funcionam offline. Este repositório fica disponível apenas para consulta.
+
 Formatando documentos.
 
 ## Uso
